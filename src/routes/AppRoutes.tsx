@@ -52,7 +52,7 @@ function HomeTab() {
                 options={
                     {
                         tabBarIcon({size, color, focused}) {
-                            return <Icon as={CoffeeIcon} size={25} color="#fff" color={focused ? '#000' : '#fff'}/>
+                            return <Icon as={CoffeeIcon} size={30} color="#fff" color={focused ? '#000' : '#fff'}/>
                         },
                     }
                 }
