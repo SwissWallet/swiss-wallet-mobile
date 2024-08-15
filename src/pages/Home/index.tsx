@@ -1,12 +1,11 @@
 import React from "react";
 import { Text, View } from "@gluestack-ui/themed";
+import HeaderWithPoints from "../../components/HeaderWithPoints";
 
 function Home():JSX.Element{
     return(
         <View>
-            <Text>
-                Tela Home
-            </Text>
+            <HeaderWithPoints/>
         </View>
     );
 }
