@@ -1,6 +1,7 @@
 import { Button, ButtonText, HStack, InputField, InputIcon, InputSlot, Text, View } from "@gluestack-ui/themed";
 import { Box } from '@gluestack-ui/themed';
 import { Input } from '@gluestack-ui/themed';
+import { useNavigation } from "@react-navigation/native";
 import { Eye, EyeOff, Lock, User } from "lucide-react-native";
 import React, { useState } from "react";
 import { Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
@@ -9,6 +10,9 @@ import LinearGradient from "react-native-linear-gradient";
 
 
 function SignIn(): JSX.Element {
+
+    const navigation = useNavigation();
+
     const [showPassword, setShowPassword] = useState(false);
 
     const handleState = () => {
@@ -61,7 +65,7 @@ function SignIn(): JSX.Element {
                         </Box>
 
                         <Box width="90%" alignItems="flex-end" marginBottom={40} ml={80}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword' as never)}>
                                 <Text underline={true} color="$white" fontSize={"$xs"}>Esqueci minha senha</Text>
                             </TouchableOpacity>
                         </Box>
@@ -86,7 +90,7 @@ function SignIn(): JSX.Element {
                     <Box bottom={20} width="100%" alignItems="center" marginTop={300}>
                         <HStack>
                             <Text color="$white">Não possui conta?</Text>
-                            <TouchableOpacity> 
+                            <TouchableOpacity onPress={()=> navigation.navigate('SignUp' as never)}> 
                                 <Text color="$white" underline={true}> cadastre-se</Text>
                             </TouchableOpacity>
                         </HStack>
