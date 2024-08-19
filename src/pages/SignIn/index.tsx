@@ -4,7 +4,7 @@ import { Input } from '@gluestack-ui/themed';
 import { useNavigation } from "@react-navigation/native";
 import { Eye, EyeOff, Lock, User } from "lucide-react-native";
 import React, { useState } from "react";
-import { Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import { Alert, Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import LinearGradient from "react-native-linear-gradient";
 
@@ -14,10 +14,20 @@ function SignIn(): JSX.Element {
     const navigation = useNavigation();
 
     const [showPassword, setShowPassword] = useState(false);
+    const[email, setEmail] = useState("");
+    const[password, setPassword] = useState("");
 
     const handleState = () => {
         setShowPassword(prevState => !prevState);
     };
+
+    async function LoginUser() {
+        if (!email || !password) {
+            Alert.alert("Erro", "Por favor, preencha o email e a senha.");
+            return;
+        }
+        console.log(email, password);
+    }
 
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -33,7 +43,12 @@ function SignIn(): JSX.Element {
                                 <InputSlot pl="$3">
                                     <InputIcon as={User} color="$white" />
                                 </InputSlot>
-                                <InputField color={"$white"} placeholder='Digite seu email' placeholderTextColor={"#fff"}/>
+                                <InputField 
+                                color={"$white"}
+                                placeholder='Digite seu email' 
+                                placeholderTextColor={"#fff"} 
+                                value={email} 
+                                onChangeText={(text) => setEmail(text)}/>
                             </Input>
 
                             <Box>
@@ -46,6 +61,8 @@ function SignIn(): JSX.Element {
                                         placeholder='Digite sua senha'
                                         placeholderTextColor={"#fff"}
                                         style={{ paddingRight: 40, color: '#ffffff' }} 
+                                        value={password}
+                                        onChangeText={(text) => setPassword(text)}
                                     />
                                 </Input>
                                 <TouchableOpacity 
@@ -71,7 +88,7 @@ function SignIn(): JSX.Element {
                         </Box>
 
                         <Box width="100%" ml={30} mr={22}>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={LoginUser}>
                                 <DropShadow style={{
                                     shadowColor: "#000",
                                     shadowOffset: { width: 2, height: 5 },
