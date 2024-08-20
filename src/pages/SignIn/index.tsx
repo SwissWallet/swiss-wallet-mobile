@@ -110,7 +110,7 @@ function SignIn(): JSX.Element {
                     </Box>
 
 
-                    <Box bottom={20} width="100%" alignItems="center" marginTop={300}>
+                    <Box bottom={20} width="100%" alignItems="center" marginTop={260}>
                         <HStack>
                             <Text color="$white">Não possui conta?</Text>
                             <TouchableOpacity onPress={()=> navigation.navigate('SignUp' as never)}> 

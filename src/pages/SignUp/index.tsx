@@ -59,14 +59,51 @@ function SignUp(): JSX.Element {
         else if (!validator.isValid(cpf)) {
             return Alert.alert('Insira um cpf válido');
         }
-        else if (String(birthDate[2] === new Date().getFullYear())) {
+        else if (String(birthDate[2]) == String(new Date().getFullYear())) {
             return Alert.alert("O ano de nascimento não deve ser igual ao atual")
         }
         else {
-            
+            register();
         }
             
     }
+
+    async function register() {
+        const response = await api.post('users', {
+            "user":{
+                username: email,
+                password: senha,
+                name: nome,
+                cpf: cpf,
+                birthDate: dataNascimento,
+                phone: telefone
+            },
+            address:{
+                zipCode: cep,
+                street: logradouro,
+                city: localidade,
+                number: numero,
+                uf: uf
+            }
+        })
+        .then((json) => {
+            console.log(json.status);
+            if (json.status === 200) {
+                Alert.alert('Cadastro realizado');
+                navigation.navigate('SignIn');
+            }
+        })
+        .catch((err) => {
+            console.log(err.response.status);
+            if(err.response.status === 409) {
+                return Alert.alert('Cadastro não realizado', 'usuário já existente');
+            }
+            else if (err.response.status === 422) {
+                return Alert.alert('Email inválido', 'Insira um email válido');
+            }
+        })
+    }
+
 
     return(
         <ScrollView showsVerticalScrollIndicator={false}>
