@@ -88,7 +88,7 @@ function SignUp(): JSX.Element {
         })
         .then((json) => {
             console.log(json.status);
-            if (json.status === 200) {
+            if (json.status === 201) {
                 Alert.alert('Cadastro realizado');
                 navigation.navigate('SignIn');
             }

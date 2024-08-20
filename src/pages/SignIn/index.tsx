@@ -7,11 +7,16 @@ import React, { useState } from "react";
 import { Alert, Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import LinearGradient from "react-native-linear-gradient";
+import api from "../../service/api";
+import {loading} from "../../redux/reducres/loading";
+import {isLoged} from "../../redux/reducres/userLoged";
+import { useDispatch } from "react-redux";
 
 
 function SignIn(): JSX.Element {
 
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
     const [showPassword, setShowPassword] = useState(false);
     const[email, setEmail] = useState("");
@@ -27,12 +32,41 @@ function SignIn(): JSX.Element {
                 Alert.alert("Erro", "Por favor, preencha o email e a senha.");
                 return;
             }
+            else {
+                login();
+            }
             
-            console.log(email, password);
-
         }catch(Erro){
             Alert.alert("Ocorreu algum erro no login")
         }
+    }
+
+    async function login() {
+        const response = await api.post('auth', {
+            username: email,
+            password: password
+        })
+        .then((json) => {
+            try {    
+                dispatch(loading(true));
+                dispatch(isLoged(true));
+                dispatch(loading(false));
+           
+            } catch (error) {
+                console.log(error);
+                dispatch(loading(false));
+            }
+
+        })
+        .catch((err) => {
+            console.log(err.response.status);
+            if(err.response.status === 400) {
+                return Alert.alert('Erro no login', 'Email ou senha incorretos');
+            }
+            else if (err.response.status === 422) {
+                return Alert.alert('Erro', 'Algo inesperado aconteceu');
+            }
+        })
     }
 
     return (
