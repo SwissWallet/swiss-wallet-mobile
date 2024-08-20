@@ -22,11 +22,17 @@ function SignIn(): JSX.Element {
     };
 
     async function LoginUser() {
-        if (!email || !password) {
-            Alert.alert("Erro", "Por favor, preencha o email e a senha.");
-            return;
+        try{
+            if (!email || !password) {
+                Alert.alert("Erro", "Por favor, preencha o email e a senha.");
+                return;
+            }
+            
+            console.log(email, password);
+
+        }catch(Erro){
+            Alert.alert("Ocorreu algum erro no login")
         }
-        console.log(email, password);
     }
 
     return (
