@@ -1,16 +1,19 @@
+//@ts-nocheck
 import { Button, ButtonText, HStack, InputField, InputIcon, InputSlot, Text, View } from "@gluestack-ui/themed";
 import { Box } from '@gluestack-ui/themed';
 import { Input } from '@gluestack-ui/themed';
 import { useNavigation } from "@react-navigation/native";
 import { Eye, EyeOff, Lock, User } from "lucide-react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, Keyboard, KeyboardAvoidingView, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import LinearGradient from "react-native-linear-gradient";
 import api from "../../service/api";
-import {loading} from "../../redux/reducres/loading";
-import {isLoged} from "../../redux/reducres/userLoged";
+import {loading} from "../../redux/reducers/loading";
+import {isLoged} from "../../redux/reducers/userLoged";
+import {user} from "../../redux/reducers/user";
 import { useDispatch } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 function SignIn(): JSX.Element {
@@ -46,11 +49,11 @@ function SignIn(): JSX.Element {
             username: email,
             password: password
         })
-        .then((json) => {
+        .then(async(json) => {
             try {    
-                dispatch(loading(true));
-                dispatch(isLoged(true));
-                dispatch(loading(false));
+                await AsyncStorage.setItem('@token', json.data.token);
+                
+                loadStorage();
            
             } catch (error) {
                 console.log(error);
@@ -61,12 +64,40 @@ function SignIn(): JSX.Element {
         .catch((err) => {
             console.log(err.response.status);
             if(err.response.status === 400) {
-                return Alert.alert('Erro no login', 'Email ou senha incorretos');
+                return Alert.alert('Erro no login', 'Credencial inválida');
             }
             else if (err.response.status === 422) {
                 return Alert.alert('Erro', 'Algo inesperado aconteceu');
             }
         })
+    }
+
+    useEffect(() => {
+        loadStorage();
+    }, []);
+
+    async function loadStorage() {
+        const token = await AsyncStorage.getItem('@token');
+
+        if (token) {
+            dispatch(loading(true));
+            const response = await api.get('users/current', {
+                headers: {
+                    'Authorization': `Bearer ${token}` 
+                }
+            })
+            .then(async(json) => {
+                api.defaults.headers['Authorization'] = `Bearer ${token}`;
+                dispatch(user(json.data));
+                dispatch(isLoged(true));
+                dispatch(loading(false));
+            })
+            .catch(async (er) => {
+                dispatch(loading(false));
+                dispatch(user({}));
+                await AsyncStorage.clear();
+            })
+        }
     }
 
     return (
@@ -81,7 +112,7 @@ function SignIn(): JSX.Element {
                         <Box marginBottom={15} w={380}>
                             <Input variant="underlined" size="md" borderColor="$white" style={{borderBottomColor: '#ffffff'}} width="90%" marginBottom={30} gap={10}>
                                 <InputSlot pl="$3">
-                                    <InputIcon as={User} color="$white" />
+                                    <InputIcon as={User} color="$white" size="24"/>
                                 </InputSlot>
                                 <InputField 
                                 color={"$white"}
@@ -94,7 +125,7 @@ function SignIn(): JSX.Element {
                             <Box>
                                 <Input variant="underlined" size="md" borderColor="$white" width="90%" gap={10} style={{borderBottomColor: '#ffffff'}}>
                                     <InputSlot pl="$3">
-                                        <InputIcon as={Lock} color="$white"/>
+                                        <InputIcon as={Lock} color="$white" size="23"/>
                                     </InputSlot>
                                     <InputField 
                                         type={showPassword ? "text" : "password"} 
@@ -116,14 +147,14 @@ function SignIn(): JSX.Element {
                                         paddingHorizontal: 30
                                     }}
                                 >
-                                    <InputIcon as={showPassword ? Eye : EyeOff} color="#fff"/>
+                                    <InputIcon as={showPassword ? Eye : EyeOff} color="#fff" size="23"/>
                                 </TouchableOpacity>
                             </Box>
                         </Box>
 
                         <Box width="90%" alignItems="flex-end" marginBottom={40} ml={80}>
                             <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword' as never)}>
-                                <Text underline={true} color="$white" fontSize={"$xs"}>Esqueci minha senha</Text>
+                                <Text underline={true} color="$white" fontSize={15}>Esqueci minha senha</Text>
                             </TouchableOpacity>
                         </Box>
 
