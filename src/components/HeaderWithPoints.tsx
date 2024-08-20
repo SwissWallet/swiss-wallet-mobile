@@ -5,6 +5,7 @@ import { Bell, ChevronRight, Eye, Settings, User } from "lucide-react-native";
 import { TouchableOpacity } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 function HeaderWithPoints():JSX.Element {
 
@@ -12,6 +13,8 @@ function HeaderWithPoints():JSX.Element {
 
     const [visible, setVisible] = useState('****');
     const [pointsCurrently, setPointsCurrently] = useState('0'); 
+
+    const user = useSelector((state:any) => state.user.value);
 
     const handlePoints = () => {
         if (visible == '****') setVisible(pointsCurrently);
@@ -33,7 +36,7 @@ function HeaderWithPoints():JSX.Element {
                             </TouchableOpacity>
 
                             <Text color="#fff" ml={6} >
-                                Olá Lacerda
+                                Olá {user.name}
                             </Text>
                                 
                         </Box>
