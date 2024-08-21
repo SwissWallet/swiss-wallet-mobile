@@ -100,7 +100,7 @@ function ForgotPassword():JSX.Element{
                         </TouchableOpacity>
 
                         <Center mb={29} >
-                            <Heading color="#fff" fontSize={32}>
+                            <Heading color="#fff" fontSize={30}>
                                 Esqueci a senha
                             </Heading>
                         </Center>
