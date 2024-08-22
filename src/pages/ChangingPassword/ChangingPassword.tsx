@@ -10,22 +10,22 @@ import api from "../../service/api";
 function ChangingPassword(){
 
     const [oldPassword, setOldPassword] = useState("");
-    const [newPasswordOne, setNewPasswordOne] = useState("");
-    const [newPasswordOTwo, setNewPasswordTwo] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
 
     async function ChangePassword(){
         
-        if(newPasswordOne != newPasswordOTwo){
+        if(newPassword != confirmPassword){
             Alert.alert("As senhas devem ser iguais!")
             return;
         }
         
-        if(newPasswordOne.length < 6 && newPasswordOTwo.length < 6 ){
+        if(newPassword.length < 6 && confirmPassword.length < 6 ){
             Alert.alert("A senha deve ter no minimo 6 digitos!")
             return;
         }
 
-        console.log(newPasswordOne)
+        console.log(newPassword)
     }
 
 
@@ -50,12 +50,12 @@ function ChangingPassword(){
 
                         <Text mt={20} color="$black" fontWeight={"$medium"} >Nova senha</Text>
                         <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6" >
-                            <InputField type="password" color="$black" onChangeText={(text) => setNewPasswordOne(text)}/>
+                            <InputField type="password" color="$black" onChangeText={(text) => setNewPassword(text)}/>
                         </Input>
 
                         <Text mt={20} color="$black" fontWeight={"$medium"}>Confirmar senha</Text>
                         <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6" >
-                            <InputField type="password" color="$black" onChangeText={(text) => setNewPasswordTwo(text)} />
+                            <InputField type="password" color="$black" onChangeText={(text) => setConfirmPassword(text)} />
                         </Input>
 
                     </Box>
