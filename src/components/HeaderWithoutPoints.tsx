@@ -55,7 +55,7 @@ function HeaderWithoutPoints():JSX.Element{
                                 </Text>
 
                                 <Text color="$white">
-                                    Seu perfil
+                                    Seu perfil 
                                 </Text>
                                 
                             </Box>
