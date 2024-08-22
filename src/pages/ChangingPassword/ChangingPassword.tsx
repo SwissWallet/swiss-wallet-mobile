@@ -1,10 +1,34 @@
 import { Box, Input, InputField, Text, View } from "@gluestack-ui/themed";
 import HeaderWithoutPoints from "../../components/HeaderWithoutPoints";
 import Titlle from "../../components/Titlle";
-import { Keyboard, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import DropShadow from "react-native-drop-shadow";
+import React, { useState } from "react";
+import api from "../../service/api";
+
 
 function ChangingPassword(){
+
+    const [oldPassword, setOldPassword] = useState("");
+    const [newPasswordOne, setNewPasswordOne] = useState("");
+    const [newPasswordOTwo, setNewPasswordTwo] = useState("");
+
+    async function ChangePassword(){
+        
+        if(newPasswordOne != newPasswordOTwo){
+            Alert.alert("As senhas devem ser iguais!")
+            return;
+        }
+        
+        if(newPasswordOne.length < 6 && newPasswordOTwo.length < 6 ){
+            Alert.alert("A senha deve ter no minimo 6 digitos!")
+            return;
+        }
+
+        console.log(newPasswordOne)
+    }
+
+
     return(
         <View>
 
@@ -21,24 +45,24 @@ function ChangingPassword(){
 
                         <Text mt={20} color="$black" fontWeight={"$medium"}>Senha atual</Text>
                         <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6">
-                            <InputField type="password" color="$black"/>
+                            <InputField type="password" color="$black" onChangeText={(text) => setOldPassword(text)}/>
                         </Input>
 
                         <Text mt={20} color="$black" fontWeight={"$medium"} >Nova senha</Text>
-                        <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6">
-                            <InputField type="password" color="$black"/>
+                        <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6" >
+                            <InputField type="password" color="$black" onChangeText={(text) => setNewPasswordOne(text)}/>
                         </Input>
 
                         <Text mt={20} color="$black" fontWeight={"$medium"}>Confirmar senha</Text>
-                        <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6">
-                            <InputField type="password" color="$black" />
+                        <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6" >
+                            <InputField type="password" color="$black" onChangeText={(text) => setNewPasswordTwo(text)} />
                         </Input>
 
                     </Box>
 
 
                     <Box>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={ChangePassword}>
                             <DropShadow  style={{shadowColor: "#000", shadowOffset: { width: 1, height: 3 }, shadowOpacity: 0.5, shadowRadius: 3}}>
                                     <Box borderRadius={10} bgColor="#9A1915" alignItems="center" justifyContent="center" height={45}>
                                         <Text color="$white">Confirmar</Text>
