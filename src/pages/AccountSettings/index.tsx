@@ -1,7 +1,7 @@
 import React from "react";
 import { View,Box,Text,Input,InputField } from "@gluestack-ui/themed";
 import HeaderWithoutPoints from "../../components/HeaderWithoutPoints";
-import Titlle from "../../components/Titlle";
+import Titlle from "../../components/Title";
 import { TouchableOpacity } from "react-native";
 import { Bold } from "lucide-react-native";
 import DropShadow from "react-native-drop-shadow";

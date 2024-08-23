@@ -10,7 +10,8 @@ import Coffe from "../pages/Coffe";
 import Library from "../pages/Library";
 import Benefits from "../pages/Benefits/Benefits";
 import Shopping from "../pages/Shopping";
-
+import AccountSettings from "../pages/AccountSettings";
+import Settings from "../pages/Settings";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -104,6 +105,8 @@ function AppRoutes():JSX.Element {
             }
         >
             <Stack.Screen name='HomeTab' component={HomeTab}/>
+            <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="AccountSettings" component={AccountSettings}/>
     
         </Stack.Navigator>
     )
