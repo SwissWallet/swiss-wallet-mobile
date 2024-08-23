@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Box, Input, InputField, Text, View } from "@gluestack-ui/themed";
 import HeaderWithoutPoints from "../../components/HeaderWithoutPoints";
-import Titlle from "../../components/Titlle";
+import Titlle from "../../components/Title";
 import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import React, { useState } from "react";
