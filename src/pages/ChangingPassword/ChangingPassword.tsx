@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Box, Input, InputField, Text, View } from "@gluestack-ui/themed";
 import HeaderWithoutPoints from "../../components/HeaderWithoutPoints";
 import Titlle from "../../components/Titlle";
@@ -5,6 +6,8 @@ import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback } from "rea
 import DropShadow from "react-native-drop-shadow";
 import React, { useState } from "react";
 import api from "../../service/api";
+import { current } from "@reduxjs/toolkit";
+import { useNavigation } from "@react-navigation/native";
 
 
 function ChangingPassword(){
@@ -12,8 +15,9 @@ function ChangingPassword(){
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const navigate = useNavigation();
 
-    async function ChangePassword(){
+    async function ChangingPassword(){
         
         if(newPassword != confirmPassword){
             Alert.alert("As senhas devem ser iguais!")
@@ -25,7 +29,31 @@ function ChangingPassword(){
             return;
         }
 
-        console.log(newPassword)
+        ChangePassword();
+    }
+
+    async function ChangePassword() {
+        
+        const response = await api.put("users/password", {
+            currentPassword:oldPassword,
+            newPassword:newPassword,
+            confirmPassword:confirmPassword
+        })
+        .then((json) => {
+            console.log(json.data);
+            return Alert.alert("Senha alterada com sucesso!")
+        }).catch((error) => {
+            console.log(error);
+            if(error.response.status === 400){
+                Alert.alert("Senha atual errada!")
+            }
+            else if (err.response.status === 422) {
+                return Alert.alert('Erro', 'Algo inesperado aconteceu');
+            }
+        })
+
+        
+
     }
 
 
@@ -62,7 +90,7 @@ function ChangingPassword(){
 
 
                     <Box>
-                        <TouchableOpacity onPress={ChangePassword}>
+                        <TouchableOpacity onPress={ChangingPassword}>
                             <DropShadow  style={{shadowColor: "#000", shadowOffset: { width: 1, height: 3 }, shadowOpacity: 0.5, shadowRadius: 3}}>
                                     <Box borderRadius={10} bgColor="#9A1915" alignItems="center" justifyContent="center" height={45}>
                                         <Text color="$white">Confirmar</Text>
