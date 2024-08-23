@@ -4,7 +4,7 @@ import { Box, Center, HStack, Icon, Text, View } from "@gluestack-ui/themed";
 import HeaderWithoutPoints from "../../components/HeaderWithoutPoints";
 import Titlle from "../../components/Title";
 import DropShadow from "react-native-drop-shadow";
-import { TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import { HelpCircle, IdCard, LucideMessageSquareWarning, User } from "lucide-react-native";
 import { Divider } from "@gluestack-ui/themed";
 import { useNavigation } from "@react-navigation/native";
@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { isLoged } from "../../redux/reducers/userLoged";
 import { user } from "../../redux/reducers/user";
+import api from "../../service/api";
 
 function Settings():JSX.Element{
 
@@ -25,6 +26,21 @@ function Settings():JSX.Element{
             dispatch(user({}));
         })
         .catch(er => console.log(er));
+    }
+
+    async function handelDeleteAccount() {
+        await api.delete('users')
+        .then(async(json) => {
+            await AsyncStorage.clear()
+            .then(() => {
+                dispatch(user({}));
+                dispatch(isLoged(false));
+            });
+        })
+        .catch((err) => {
+            console.log(err);
+            return Alert.alert('Algo inesperado aconteceu', 'Conta não apagada');
+        })
     }
 
     return(
@@ -93,7 +109,7 @@ function Settings():JSX.Element{
 
             <Box ml={22} mr={22} mt={60}>
                 <DropShadow style={{shadowColor: "#000", shadowOffset:{width: 1, height: 4}, shadowOpacity: 0.5, shadowRadius: 2}}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handelDeleteAccount}>
                         <Box bgColor="#fff" borderColor="#E30613" borderWidth={1} borderRadius={5} mb={20} height={45}>
                             <Text height={40} color="#E30613" fontWeight="$bold" textAlign="center" textAlignVertical="center">
                                 Apagar Conta
