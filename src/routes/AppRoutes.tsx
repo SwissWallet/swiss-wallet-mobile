@@ -12,6 +12,8 @@ import Benefits from "../pages/Benefits/Benefits";
 import Shopping from "../pages/Shopping";
 import AccountSettings from "../pages/AccountSettings";
 import Settings from "../pages/Settings";
+import ChangeAdress from "../pages/changeAdress";
+import ChangingPassword from "../pages/ChangingPassword/ChangingPassword";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -107,6 +109,8 @@ function AppRoutes():JSX.Element {
             <Stack.Screen name='HomeTab' component={HomeTab}/>
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="AccountSettings" component={AccountSettings}/>
+            <Stack.Screen name="ChangeAdress" component={ChangeAdress}/>
+            <Stack.Screen name="ChangingPassword" component={ChangingPassword}/>
     
         </Stack.Navigator>
     )
