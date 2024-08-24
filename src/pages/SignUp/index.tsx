@@ -95,6 +95,7 @@ function SignUp(): JSX.Element {
         })
         .catch((err) => {
             console.log(err.response.status);
+            console.log(err.reponse.errors);
             if(err.response.status === 409) {
                 return Alert.alert('Cadastro não realizado', 'usuário já existente');
             }

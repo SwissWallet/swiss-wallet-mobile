@@ -5,10 +5,12 @@ import Titlle from "../../components/Title";
 import { TouchableOpacity } from "react-native";
 import { Bold } from "lucide-react-native";
 import DropShadow from "react-native-drop-shadow";
+import { useNavigation } from "@react-navigation/native";
 
 
 
 function AccountSettings():JSX.Element{
+    const navigation= useNavigation();
     return(
         <View>
             <Box>
@@ -35,7 +37,7 @@ function AccountSettings():JSX.Element{
 
             <DropShadow 
                 style={{shadowColor: '#000', shadowOffset: {width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5}}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>navigation.navigate("ChangingPassword" as never)}>
                     <Box ml={22} mr={22} bgColor="#9A1915" mt={45} alignItems="center" justifyContent="center" height={45} borderRadius={10} width={365}>
                                     <Text color="#fff" fontWeight="$bold">
                                         Alterar senha
@@ -47,7 +49,7 @@ function AccountSettings():JSX.Element{
 
             <DropShadow 
                 style={{shadowColor: '#000', shadowOffset: {width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5}}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("ChangeAdress" as never)}>
                 <Box ml={22} mr={22} bgColor="#9A1915" mt={35} alignItems="center" justifyContent="center" height={45} borderRadius={10} width={365}>
                                 <Text color="#fff" fontWeight="$bold">
                                     Alterar endereço 
