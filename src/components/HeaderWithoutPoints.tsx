@@ -10,7 +10,7 @@ function HeaderWithoutPoints():JSX.Element{
 
     const navigate = useNavigation();
     const user = useSelector((state:any) => state.user.value);
-
+    
     return(
         <LinearGradient colors={['#E30513', '#9A1915']}>
            
@@ -51,7 +51,7 @@ function HeaderWithoutPoints():JSX.Element{
                             <Box alignItems="flex-start" flexDirection="column">
 
                                 <Text color="$white">
-                                        Olá {user.name}
+                                        Olá {user.user.name}
                                 </Text>
 
                                 <Text color="$white">

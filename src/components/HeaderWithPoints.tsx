@@ -36,7 +36,7 @@ function HeaderWithPoints():JSX.Element {
                             </TouchableOpacity>
 
                             <Text color="#fff" ml={6} >
-                                Olá {user.name}
+                                Olá {user.user.name}
                             </Text>
                                 
                         </Box>
