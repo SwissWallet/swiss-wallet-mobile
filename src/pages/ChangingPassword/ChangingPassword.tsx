@@ -10,7 +10,7 @@ import { current } from "@reduxjs/toolkit";
 import { useNavigation } from "@react-navigation/native";
 
 
-function ChangingPassword(){
+function ChangingPassword():JSX.Element{
 
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
