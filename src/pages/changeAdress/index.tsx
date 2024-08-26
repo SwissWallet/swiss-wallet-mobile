@@ -3,7 +3,7 @@ import { View,Box,Text,Input, HStack} from "@gluestack-ui/themed";
 import HeaderWithoutPoints from "../../components/HeaderWithoutPoints";
 import Title from "../../components/Title";
 import { InputField } from "@gluestack-ui/themed";
-import { TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 
 
@@ -34,6 +34,23 @@ function ChangeAdress():JSX.Element{
     useEffect(() => {
         if (cep.length === 8) handleLocation(cep);
     }, [cep]);
+
+
+    async function validationInputs(){
+
+        if (cep === '' || city === '' || uf === '' || logradouro === '' || number === '') {
+            return Alert.alert('Todos os campos devem ser preenchidos');
+        } else if(cep.length < 8 || cep.length > 8){
+            return Alert.alert("O cep deve ter 8 digitos")
+        } else{
+            registerNewAdress();
+        }
+    
+    }
+
+    async function registerNewAdress() {
+        
+    }
 
     return(
 
@@ -80,7 +97,7 @@ function ChangeAdress():JSX.Element{
             </Box>
 
             <Box>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={validationInputs}>
                     <DropShadow style={{shadowColor: '#000', shadowOffset: {width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5}}>
                         <Box ml={22} mr={22} bgColor="#9A1915" mt={45} alignItems="center" justifyContent="center" height={45} borderRadius={10} width={365}>
                             <Text color="#fff" fontWeight="$bold">Confirmar</Text>
