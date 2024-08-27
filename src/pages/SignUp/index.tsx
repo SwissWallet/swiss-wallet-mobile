@@ -53,6 +53,9 @@ function SignUp(): JSX.Element {
         if (nome === '' || dataNascimento === '' || email === '' || cpf === '' || telefone === '' || cep === '' || localidade === '' || uf === '' || logradouro === '' || numero === '' || senha === '' || confirmarSenha === '') {
             return Alert.alert('Todos os camopos devem ser preenchidos');
         }
+        else if(cep.length < 8 || cep.length > 8){
+            return Alert.alert("O cep deve ter 8 digitos")
+        }
         else if (senha != confirmarSenha) {
             return Alert.alert('As senhas devem ser iguais');
         }

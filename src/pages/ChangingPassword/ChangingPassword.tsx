@@ -10,7 +10,7 @@ import { current } from "@reduxjs/toolkit";
 import { useNavigation } from "@react-navigation/native";
 
 
-function ChangingPassword(){
+function ChangingPassword():JSX.Element{
 
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -47,7 +47,7 @@ function ChangingPassword(){
             if(error.response.status === 400){
                 Alert.alert("Senha atual errada!")
             }
-            else if (err.response.status === 422) {
+            else if (error.response.status === 422) {
                 return Alert.alert('Erro', 'Algo inesperado aconteceu');
             }
         })
