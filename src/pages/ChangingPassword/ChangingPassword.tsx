@@ -62,12 +62,13 @@ function ChangingPassword():JSX.Element{
 
             <HeaderWithoutPoints/>
 
+            <Titlle name="Alterar Senha" />
+            
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> 
             
 
                 <Box ml={30} mr={30} mt={40}>
 
-                    <Titlle name="Alterar Senha" />
 
                     <Box mb={80}>
 

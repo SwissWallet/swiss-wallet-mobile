@@ -6,6 +6,7 @@ import { InputField } from "@gluestack-ui/themed";
 import { ActivityIndicator, Alert, Keyboard, Modal, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import api from "../../service/api";
+import { useSelector } from "react-redux";
 
 
 
@@ -14,8 +15,10 @@ import api from "../../service/api";
 
 function ChangeAdress():JSX.Element{
     
-    const [cep, setCep] = useState("");
-    const [number, setNumber] = useState("")
+    const user = useSelector((state:any) => state.user.value);
+
+    const [cep, setCep] = useState(user.address.zipCode);
+    const [number, setNumber] = useState(String(user.address.number));
    
     const [city, setCity] = useState("")
     const [uf, setUf] = useState("");
@@ -86,7 +89,7 @@ function ChangeAdress():JSX.Element{
 
                     <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={20}>CEP</Text>
                     <Input   mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
-                        <InputField color="#000" fontWeight="bold" onChangeText={(text) => setCep(text)}/>
+                        <InputField color="#000" fontWeight="bold" onChangeText={(text) => setCep(text)} value={cep}/>
                     </Input>    
 
                     <HStack alignItems="center" >
@@ -113,7 +116,7 @@ function ChangeAdress():JSX.Element{
 
                     <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={20}>Número</Text>
                     <Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
-                            <InputField color="#000" fontWeight="bold" onChangeText={(text) => setNumber(text)}/>
+                            <InputField color="#000" fontWeight="bold" onChangeText={(text) => setNumber(text)} value={number}/>
                     </Input>
                 
                 </Box>
