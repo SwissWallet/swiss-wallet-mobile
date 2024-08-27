@@ -47,7 +47,7 @@ function ChangingPassword():JSX.Element{
             if(error.response.status === 400){
                 Alert.alert("Senha atual errada!")
             }
-            else if (err.response.status === 422) {
+            else if (error.response.status === 422) {
                 return Alert.alert('Erro', 'Algo inesperado aconteceu');
             }
         })

@@ -5,6 +5,7 @@ import Title from "../../components/Title";
 import { InputField } from "@gluestack-ui/themed";
 import { Alert, TouchableOpacity } from "react-native";
 import DropShadow from "react-native-drop-shadow";
+import api from "../../service/api";
 
 
 
@@ -50,6 +51,22 @@ function ChangeAdress():JSX.Element{
 
     async function registerNewAdress() {
         
+        const response = await api.put('users/address', {
+            zipCode:cep,
+            street:logradouro,
+            city:city,
+            number:number,
+            uf:uf
+        })
+        .then((json) => {
+            console.log(json.data);
+            return Alert.alert("Endereço alterado com sucesso!")
+        }).catch((error) =>{
+            console.log(error);
+
+            return Alert.alert("Algo inesperado aconteceu!")
+
+        })
     }
 
     return(
