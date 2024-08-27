@@ -6,11 +6,15 @@ import { TouchableOpacity } from "react-native";
 import { Bold } from "lucide-react-native";
 import DropShadow from "react-native-drop-shadow";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
 
 
 
 function AccountSettings():JSX.Element{
     const navigation= useNavigation();
+
+    const user = useSelector((state:any) => state.user.value);
+
     return(
         <View>
             <Box>
@@ -21,13 +25,13 @@ function AccountSettings():JSX.Element{
 
             <Box>
                 <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={39}>Nome</Text>
-                <Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
-                                <InputField color="#000" fontWeight="bold" />
+                <Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365} isDisabled>
+                                <InputField color="#000" fontWeight="bold" value={user.user.name}/>
                             </Input>
 <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={28}>E-mail</Text>
 
-<Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
-                                <InputField color="#000" fontWeight="bold" />
+<Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365} isDisabled>
+                                <InputField color="#000" fontWeight="bold" value={user.user.username}/>
                             </Input>
 
 

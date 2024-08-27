@@ -21,7 +21,7 @@ function HeaderWithoutPoints():JSX.Element{
                     <HStack justifyContent="space-between" alignItems="center">
 
                         <TouchableOpacity onPress={() => navigate.goBack()}>
-                            <Icon as={ArrowLeftCircle} color="$white" size={'35'}/>
+                            <Icon as={ArrowLeftCircle} color="$white" size="30"/>
                         </TouchableOpacity>
 
                         <Box flexDirection="row" gap={10} alignItems="center">
@@ -44,7 +44,7 @@ function HeaderWithoutPoints():JSX.Element{
                         <HStack mb={5} gap={5} alignItems="center">
 
                             <TouchableOpacity>
-                                <Icon as={User} color="$white" size={"35"}/>
+                                <Icon as={User} color="$white" size="30"/>
                             </TouchableOpacity>
 
 
