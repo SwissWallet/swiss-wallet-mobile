@@ -33,8 +33,8 @@ function Settings():JSX.Element{
         .then(async(json) => {
             await AsyncStorage.clear()
             .then(() => {
-                dispatch(user({}));
                 dispatch(isLoged(false));
+                dispatch(user({}));
             });
         })
         .catch((err) => {
