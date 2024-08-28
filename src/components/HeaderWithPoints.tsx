@@ -12,10 +12,11 @@ function HeaderWithPoints():JSX.Element {
     const navigation = useNavigation();
 
     const [visible, setVisible] = useState('****');
-    const [pointsCurrently, setPointsCurrently] = useState('0'); 
-
+    
     const user = useSelector((state:any) => state.user.value);
-
+    
+    const [pointsCurrently, setPointsCurrently] = useState(user.account.value); 
+    
     const handlePoints = () => {
         if (visible == '****') setVisible(pointsCurrently);
         else setVisible('****');
