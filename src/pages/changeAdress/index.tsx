@@ -6,8 +6,8 @@ import { InputField } from "@gluestack-ui/themed";
 import { ActivityIndicator, Alert, Keyboard, Modal, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import api from "../../service/api";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import {user as userUpdate }  from "../../redux/reducers/user";
 
 
 
@@ -16,6 +16,8 @@ import { useSelector } from "react-redux";
 function ChangeAdress():JSX.Element{
     
     const user = useSelector((state:any) => state.user.value);
+
+    const dispatch = useDispatch();
 
     const [cep, setCep] = useState(user.address.zipCode);
     const [number, setNumber] = useState(String(user.address.number));
@@ -68,12 +70,24 @@ function ChangeAdress():JSX.Element{
         })
         .then((json) => {
             console.log(json.data);
+            updateAddress();
             return Alert.alert("Endereço alterado com sucesso!")
+
         }).catch((error) =>{
 
             console.log(error);
             return Alert.alert("Algo inesperado aconteceu!")
 
+        })
+    }
+
+    async function updateAddress() {
+        const response = await api.get('users/current')
+        .then((json) => {
+            dispatch(userUpdate(json.data));
+        })
+        .catch(err => {
+            console.log(err + " erro ao trocar o endereço");
         })
     }
 
