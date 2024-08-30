@@ -31,7 +31,7 @@ function HeaderWithoutPoints():JSX.Element{
                                 </TouchableOpacity>
 
 
-                                <TouchableOpacity onPress={() => navigate.navigate('Settings')}>
+                                <TouchableOpacity onPress={() => navigate.navigate('Settings' as never)}>
                                     <Icon as={Settings} color="$white" size="xl"/>
                                 </TouchableOpacity>
                         
@@ -43,7 +43,7 @@ function HeaderWithoutPoints():JSX.Element{
 
                         <HStack mb={5} gap={5} alignItems="center">
 
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigate.navigate('Profile' as never)}>
                                 <Icon as={User} color="$white" size="30"/>
                             </TouchableOpacity>
 
