@@ -3,10 +3,15 @@ import { Box, HStack, Icon, Text, View } from "@gluestack-ui/themed";
 import HeaderWithPoints from "../../components/HeaderWithPoints";
 import { ScrollView } from "react-native";
 import DropShadow from "react-native-drop-shadow";
-import { Heart } from "lucide-react-native";
+import { ChevronRight, Heart } from "lucide-react-native";
 
 function Home():JSX.Element{
+
+
+
     return(
+
+        
         <View>
             <HeaderWithPoints/>
 
@@ -29,8 +34,34 @@ function Home():JSX.Element{
 
                         </Box>
                     
-                    </Box>
+                </Box>
                 
+                <Box ml={22} mr={22} bg="#fff" height={60} borderRadius={10} mt={15} mb={20} justifyContent="center">
+                    
+                        <HStack alignItems="center" justifyContent="space-between" ml={22} mr={22}>
+                            <Text fontWeight={"$bold"} fontSize={20} color="#000"> Favoritos</Text>
+                            <Icon as={ChevronRight} color="#000" size="xl"/>
+                        </HStack>
+
+                </Box>
+
+                <Box ml={22} mr={22} bg="#fff" height={215} borderRadius={10} mt={15} mb={20} justifyContent="center">
+                        <Box>
+
+                            <HStack justifyContent="space-between" ml={22} mr={22} mt={-80}>
+                                <Text fontWeight={"$extrabold"} fontSize={25} color="#000">Camisas</Text>
+                                <Icon as={ChevronRight} color="#000" size="xl"/>
+                            </HStack>
+
+                            <Box>
+
+                            </Box>
+
+                        </Box>
+                </Box>
+
+
+
             </DropShadow>
         
         </View>
