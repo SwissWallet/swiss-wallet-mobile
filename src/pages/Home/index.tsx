@@ -12,7 +12,7 @@ function Home():JSX.Element{
 
     return(
 
-        
+        <ScrollView>
         <View>
             <HeaderWithPoints/>
 
@@ -63,7 +63,7 @@ function Home():JSX.Element{
             </DropShadow>
         
         </View>
-     
+        </ScrollView>
     );
 }
 
