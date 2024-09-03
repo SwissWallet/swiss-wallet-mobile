@@ -4,6 +4,7 @@ import HeaderWithPoints from "../../components/HeaderWithPoints";
 import { ScrollView } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import { ChevronRight, Heart } from "lucide-react-native";
+import ProductCard from "../../components/ProductCard";
 
 function Home():JSX.Element{
 
@@ -45,19 +46,16 @@ function Home():JSX.Element{
 
                 </Box>
 
-                <Box ml={22} mr={22} bg="#fff" height={215} borderRadius={10} mt={15} mb={20} justifyContent="center">
-                        <Box>
-
-                            <HStack justifyContent="space-between" ml={22} mr={22} mt={-80}>
+                <Box ml={22} mr={22} bg="#fff" borderRadius={10} mt={15} mb={20}>
+                        
+                            <HStack justifyContent="space-between" alignItems="center" ml={22} mr={22} mt={10}>
                                 <Text fontWeight={"$extrabold"} fontSize={25} color="#000">Camisas</Text>
                                 <Icon as={ChevronRight} color="#000" size="xl"/>
                             </HStack>
 
-                            <Box>
-
-                            </Box>
-
-                        </Box>
+                            <Box mb={10}>
+                                <ProductCard categoria="STORE"/>
+                            </Box>                         
                 </Box>
 
 

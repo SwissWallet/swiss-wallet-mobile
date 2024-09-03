@@ -1,46 +1,83 @@
-import { Box, Icon, Text, View } from "@gluestack-ui/themed"
+import { Box, HStack, Icon, Text, View } from "@gluestack-ui/themed"
 import { Heart } from "lucide-react-native"
 import api from "../service/api"
+import { useState } from "react"
 
 interface PropsProductCard{
- name : string,
- descripiton : string,
- points : number
+ categoria : string
 }
 
-function ProductCard({name, descripiton, points}: PropsProductCard):JSX.Element{
+function ProductCard({categoria}: PropsProductCard):JSX.Element{
 
-    const response = await api.get("",{
+    const [products, setProducts] = useState([]);
 
-    })
-    .then((json) => {
+    async function loadProduct() {
+        const response =  api.get(`/products/category?category=${categoria}`)
+        .then((json) => {
+            setProducts(json.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+        
+    } 
 
-    })
-    .catch((error) => {
-
-    })
-
+    loadProduct();
 
     return(
         <View>
 
-            {/* Imagem do banco */}
+                <Box>
 
-            <Box borderRadius={10} bgColor="#2A2A2A" width={140} height={60}>
+                    <Text mt={15}>
+                    imagem do banco
+                    </Text>
 
-                <Box> {/* Box para os textos*/}
-                    <Text>{name}</Text>
-                    <Text>{descripiton}</Text>
-                    <Text>{points} Pontos</Text>
+                    <Box borderRadius={10} bgColor="#2A2A2A" mr={30} ml={30} height={80} justifyContent="center">
+
+                        <HStack justifyContent="space-evenly" alignItems="center">
+                            <Box> 
+                                <Text color="$white" fontSize={18} fontWeight={"$bold"}>{products[0]} Camisa Destaque</Text>
+                                <Text color="$white" fontSize={17} mt={5}>{products[0]} 30 Pontos</Text>
+                            </Box>
+
+                            
+                            <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
+                                <Icon as={Heart}  color="#fff" size="xl"/>
+                            </Box>
+                            
+                        </HStack>
+
+                    </Box>
+
                 </Box>
+
+
 
                 <Box>
-                    <Box bgColor="#C40601" borderRadius={10} width={20} height={20}>
-                        <Icon as={Heart}  color="#000" size="xl"/>
-                    </Box>
-                </Box>
-            </Box>
 
+                    <Text mt={15}>
+                    imagem do banco
+                    </Text>
+
+                    <Box borderRadius={10} bgColor="#2A2A2A" mr={30} ml={30} height={80} justifyContent="center">
+
+                        <HStack justifyContent="space-evenly" alignItems="center">
+                            <Box> 
+                                <Text color="$white" fontSize={18} fontWeight={"$bold"}>{products[0]} Camisa Destaque</Text>
+                                <Text color="$white" fontSize={17} mt={5}>{products[0]} 30 Pontos</Text>
+                            </Box>
+
+                            
+                            <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
+                                <Icon as={Heart}  color="#fff" size="xl"/>
+                            </Box>
+                            
+                        </HStack>
+
+                    </Box>
+
+                </Box>
         </View>
     )
 }
