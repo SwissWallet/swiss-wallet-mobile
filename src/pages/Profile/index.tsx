@@ -5,7 +5,9 @@ import { useSelector } from "react-redux";
 function Profile(): JSX.Element{
 
     const user = useSelector((state:any) => state.user.value);
-
+    const birth = user.user.birthDate.split('/');
+    const age = String(new Date().getFullYear() - birth[2]);
+    console.log(age);
 
     return(
         <View>
@@ -40,7 +42,7 @@ function Profile(): JSX.Element{
                     <Box>
                         <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={39}>Idade</Text>
                         <Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={130} isDisabled>
-                            <InputField color="#000" fontWeight="bold" value={user.user.birthDate}/>
+                            <InputField color="#000" fontWeight="bold" value={age}/>
                         </Input>
                     </Box>
             </HStack>  
