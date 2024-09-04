@@ -11,7 +11,17 @@ function Store():JSX.Element{
             <View>
                 <HeaderWithPoints/>
 
+                    <Box mb={-50} ml={22} mt={45}>
+                        <Text color="$black" fontWeight={"$bold"} fontSize={40} mb={-20}>
+                            Loja
+                        </Text>
+                        <Text>
+                            confira as melhores opções de produtos:
+                        </Text>
+                    </Box>
+
                 <DropShadow style={{shadowColor: '#000', shadowOffset: {width: 0, height: 4}, shadowOpacity: 0.5, shadowRadius: 4}}>
+
 
                     <Box mt={70}>
                         <ListProductCard categoria="STORE"/>    
