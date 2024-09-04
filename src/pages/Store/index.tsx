@@ -13,7 +13,7 @@ function Store():JSX.Element{
                 <HeaderWithPoints/>
 
                     <Box mb={-50} ml={22} mt={45}>
-                        <Text color="$black" fontWeight={"$bold"} fontSize={40} mb={-20}>
+                        <Text color="$black" fontWeight={"$bold"} fontSize={40} >
                             Loja
                         </Text>
                         <Text>
