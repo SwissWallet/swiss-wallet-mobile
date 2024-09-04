@@ -9,6 +9,7 @@ function Store():JSX.Element{
     return(
         <ScrollView showsVerticalScrollIndicator={false}>
             <View>
+                
                 <HeaderWithPoints/>
 
                     <Box mb={-50} ml={22} mt={45}>
