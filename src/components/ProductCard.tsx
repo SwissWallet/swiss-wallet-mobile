@@ -1,7 +1,9 @@
+//@ts-nocheck
 import { Box, HStack, Icon, Image, Text, View } from "@gluestack-ui/themed"
 import { Heart } from "lucide-react-native"
 import api from "../service/api"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { ActivityIndicator, TouchableOpacity } from "react-native"
 
 interface PropsProductCard{
  categoria : string
@@ -10,11 +12,13 @@ interface PropsProductCard{
 function ProductCard({categoria}: PropsProductCard):JSX.Element{
 
     const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     async function loadProduct() {
-        const response =  api.get(`/products/category?category=${categoria}`)
+        const response = await api.get(`/products/category?category=${categoria}`)
         .then((json) => {
             setProducts(json.data);
+            setLoading(false);
         })
         .catch((error) => {
             console.log(error);
@@ -22,67 +26,65 @@ function ProductCard({categoria}: PropsProductCard):JSX.Element{
         
     } 
 
-    loadProduct();
-    // console.log(products[0].image);
+    useEffect(() => {
+        loadProduct();
+    }, []);
+    
+    if (loading) {
+        return(
+            <View>
+                <ActivityIndicator color="#000" size="large"/>
+            </View>
+        )
+    }
+
     return(
         <View>
+            <Box>
+                <Box justifyContent="center" alignItems="center">
+                    <Image source={(`data:image/jpeg;base64,${products[0].image}`)} alt="camisa" width={250} height={330}/> 
+                </Box>
 
-                <Box>
+                <Box borderRadius={10} bgColor="#2A2A2A" mr={30} ml={30} height={80} justifyContent="center" mt={-25}>
 
-                    <Text mt={15}>
-                        Imagem de exemplo
-                    </Text>
+                    <HStack justifyContent="space-evenly" alignItems="center">
+                        <Box> 
+                            <Text color="$white" fontSize={18} fontWeight={"$bold"}>{products[0].name}</Text>
+                            <Text color="$white" fontSize={17} mt={5}>{products[0].value} Pontos</Text>
+                        </Box>
 
-                    <Box justifyContent="center" alignItems="center">
-                        {/* <Image source={require(`data:image/jpeg;base64,${products[0].name}`)}/>  */}
-                        {/* <Image source={require('../images/camisa.jpg')} alt="camisa" width={250} height={330} /> */}
-                    </Box>
-
-                    <Box borderRadius={10} bgColor="#2A2A2A" mr={30} ml={30} height={80} justifyContent="center" mt={-25}>
-
-                        <HStack justifyContent="space-evenly" alignItems="center">
-                            <Box> 
-                                <Text color="$white" fontSize={18} fontWeight={"$bold"}>Camisa Destaque</Text>
-                                <Text color="$white" fontSize={17} mt={5}>30 Pontos</Text>
-                            </Box>
-
-                            
+                        <TouchableOpacity>
                             <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
                                 <Icon as={Heart}  color="#fff" size="xl"/>
                             </Box>
-                            
-                        </HStack>
-
-                    </Box>
-
+                        </TouchableOpacity>
+                    </HStack>
                 </Box>
+            </Box>
 
+            <Box mt={30} mb={10}>
 
+                <Box justifyContent="center" alignItems="center">
+                    <Image source={(`data:image/jpeg;base64,${products[0].image}`)} alt="camisa" width={250} height={330}/> 
+                </Box>
+                
+                <Box borderRadius={10} bgColor="#2A2A2A" mr={30} ml={30} height={80} justifyContent="center" mt={-25}>
 
-                <Box>
+                    <HStack justifyContent="space-evenly" alignItems="center">
+                        <Box> 
+                            <Text color="$white" fontSize={18} fontWeight={"$bold"}>{products[0].name}</Text>
+                            <Text color="$white" fontSize={17} mt={5}>{products[0].value} Pontos</Text>
+                        </Box>
 
-                    <Text mt={15}>
-                    imagem do banco
-                    </Text>
-
-                    <Box borderRadius={10} bgColor="#2A2A2A" mr={30} ml={30} height={80} justifyContent="center">
-
-                        <HStack justifyContent="space-evenly" alignItems="center">
-                            <Box> 
-                                <Text color="$white" fontSize={18} fontWeight={"$bold"}>Camisa Destaque</Text>
-                                <Text color="$white" fontSize={17} mt={5}>30 Pontos</Text>
-                            </Box>
-
-                            
+                        <TouchableOpacity>
                             <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
                                 <Icon as={Heart}  color="#fff" size="xl"/>
                             </Box>
-                            
-                        </HStack>
-
-                    </Box>
+                        </TouchableOpacity>
+                    </HStack>
 
                 </Box>
+            </Box>
         </View>
     )
 }
