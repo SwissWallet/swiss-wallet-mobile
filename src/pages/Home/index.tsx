@@ -38,7 +38,7 @@ function Home():JSX.Element{
                         
                     </Box>
                     
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.navigate('Favorite' as never)}>
                         <Box ml={22} mr={22} bg="#fff" height={60} borderRadius={10} mt={15} mb={20} justifyContent="center">
                             
                                 <HStack alignItems="center" justifyContent="space-between" ml={22} mr={22}>
