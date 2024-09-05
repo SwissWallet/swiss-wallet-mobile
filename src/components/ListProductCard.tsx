@@ -4,9 +4,14 @@ import { Heart } from "lucide-react-native"
 import api from "../service/api"
 import { useEffect, useState } from "react"
 import { ActivityIndicator, TouchableOpacity } from "react-native"
+const favorite = require('../util/favorite');
 
 interface PropsProductCard{
  categoria : string
+}
+
+function favoriteProdut(id:string) {
+    favorite({id: id});
 }
 
 function ListProductCard({categoria}: PropsProductCard):JSX.Element{
@@ -68,7 +73,7 @@ function BoxItem({item}:props):JSX.Element {
                             <Text color="$white" fontSize={17} mt={5}>{item.value} Pontos</Text>
                         </Box>
 
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={() => favoriteProdut(item.id)}>
                             <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
                                 <Icon as={Heart}  color="#fff" size="xl"/>
                             </Box>
