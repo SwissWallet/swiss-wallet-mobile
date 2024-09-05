@@ -69,7 +69,7 @@ function HeaderWithPoints():JSX.Element {
                                         Saldo
                                     </Text>
 
-                                    <TouchableOpacity>
+                                    <TouchableOpacity onPress={() => navigation.navigate('Extract' as never)}>
                                         <HStack alignItems="center">
                                             <Text fontWeight="$medium" color="#000">
                                                 Ver extrato
