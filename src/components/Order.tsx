@@ -2,8 +2,10 @@
 import { Box, HStack, Icon, Image, Text, View } from "@gluestack-ui/themed";
 import { Trash } from "lucide-react-native";
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import DropShadow from "react-native-drop-shadow";
+import api from "../service/api";
+import { useNavigation } from "@react-navigation/native";
 
 type props = {
     order:Object
@@ -11,6 +13,8 @@ type props = {
 
 function Order({order}:props):JSX.Element {
     
+    const navigation = useNavigation();
+
     let color;
     let status;
     
@@ -31,6 +35,31 @@ function Order({order}:props):JSX.Element {
         status = 'Não disposnível'
     }
 
+    function confirmDeleteOrder() {
+        
+        Alert.alert('Cancelar Pedido', 'Deseja cancelar o pedido?', 
+            [
+                {
+                    text: 'Confirmar', onPress: () => {
+                        deleteOrder();
+                    }
+                },
+                {
+                    text: 'Cancelar', style: 'cancel'
+                }
+        ]);
+    }
+    
+    async function deleteOrder() {
+        const response = await api.delete(`orders?idOrder=${order.id}`)
+        .then(() => {
+            Alert.alert('Pedido', 'Pedido Cancelado');
+            navigation.replace('Shopping')
+        })
+        .catch(err => console.log(err));
+    }
+
+
     return(
         <Box ml={22} mr={22} bg="#fff" borderRadius={10} mb={20} mt={5}>
             <Box>
@@ -44,7 +73,7 @@ function Order({order}:props):JSX.Element {
                         <Text color="#000" fontWeight={"$bold"} fontSize={25}>
                             {order.product.name}
                         </Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={confirmDeleteOrder}>
                             <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
                                 <Icon as={Trash} color="#fff" size="xl"/>
                             </Box>
