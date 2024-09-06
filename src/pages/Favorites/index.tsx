@@ -4,12 +4,12 @@ import React, { useEffect, useState } from "react";
 import HeaderWithoutPoints from "../../components/HeaderWithoutPoints";
 import Titlle from "../../components/Title";
 import api from "../../service/api";
-import { ActivityIndicator, FlatList, ScrollView, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Alert, DevSettings, FlatList, ScrollView, TouchableOpacity } from "react-native";
 import { Heart, Trash } from "lucide-react-native";
 import DropShadow from "react-native-drop-shadow";
+import { useNavigation } from "@react-navigation/native";
 
-function Favorite():JSX.Element {
-
+function Favorite() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -61,6 +61,21 @@ type props = {
 }
 
 function BoxItem({item}:props):JSX.Element {
+
+    const navigation = useNavigation();
+
+    async function deleteProduct(id:string) {
+        console.log(item.product.id);
+        const response = await api.delete(`favorites?idProduct=${id}`)
+        .then(() => {
+            navigation.replace('Favorite');
+        })
+        .catch((err) => {
+            console.log(err);
+            return Alert.alert('Item não removido');
+        });
+    }
+
     return(
         <DropShadow style={{shadowColor: '#000', shadowOffset: {width: 0, height: 4}, shadowOpacity: 0.5, shadowRadius: 4}}>
             <Box ml={22} mr={22} bg="#fff" borderRadius={10} mb={20} pb={20} mt={20}>
@@ -77,7 +92,7 @@ function BoxItem({item}:props):JSX.Element {
                                 <Text color="$white" fontSize={17} mt={5}>{item.product.value} Pontos</Text>
                             </Box>
 
-                            <TouchableOpacity >
+                            <TouchableOpacity onPress={() => deleteProduct(item.product.id)}>
                                 <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
                                     <Icon as={Trash}  color="#fff" size="xl"/>
                                 </Box>
