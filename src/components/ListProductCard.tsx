@@ -1,9 +1,9 @@
 //@ts-nocheck
 import { Box, FlatList, HStack, Icon, Image, Text, View } from "@gluestack-ui/themed"
-import { Heart } from "lucide-react-native"
+import { Heart, ShoppingCart } from "lucide-react-native"
 import api from "../service/api"
 import { useEffect, useState } from "react"
-import { ActivityIndicator, TouchableOpacity } from "react-native"
+import { ActivityIndicator, Alert, TouchableOpacity } from "react-native"
 const favorite = require('../util/favorite');
 
 interface PropsProductCard{
@@ -47,7 +47,7 @@ function ListProductCard({categoria}: PropsProductCard):JSX.Element{
         <FlatList 
             data={products}
             keyExtractor={(item) => item.id}
-            renderItem={({item}) => <BoxItem item={item}/>}
+            renderItem={({item}) => <BoxItem item={item} categoria={categoria}/>}
             scrollEnabled={false}
         />
     )
@@ -55,9 +55,29 @@ function ListProductCard({categoria}: PropsProductCard):JSX.Element{
 
 type props = {
     item:Object
+    categoria: string
 }
 
-function BoxItem({item}:props):JSX.Element {
+function BoxItem({item, categoria}:props):JSX.Element {
+    
+    function confirmOrder() {
+        Alert.alert('Confirmar Pedido', 'Deseja confirmar o pedido?', [
+            {text: 'Sim', onPress: () => {
+                makeOrder(item.id)
+            }},
+            {text: 'Cancelar'}
+
+        ])
+    }
+
+    async function makeOrder(id:string) {
+        const response = await api.post(`orders?idProduct=${item.id}`)
+        .then(() => {
+            return Alert.alert('Pedido Realizado com sucesso')
+        })
+        .catch(err => console.log(err));
+    }
+
     return(
         <Box ml={22} mr={22} bg="#fff" borderRadius={10} mb={20} pb={20} mt={5}>
             <Box>
@@ -78,6 +98,20 @@ function BoxItem({item}:props):JSX.Element {
                                 <Icon as={Heart}  color="#fff" size="xl"/>
                             </Box>
                         </TouchableOpacity>
+
+                        {
+                            categoria === 'STORE' ? 
+                            (
+                                <TouchableOpacity onPress={confirmOrder}>
+                                    <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
+                                        <Icon as={ShoppingCart} color="#fff" size="xl"/>
+                                    </Box>
+                                </TouchableOpacity>
+                            ) : 
+                            (
+                                ''
+                            )
+                        }
                     </HStack>
                 </Box>
             </Box>
