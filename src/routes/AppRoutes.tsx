@@ -117,7 +117,6 @@ function AppRoutes():JSX.Element {
             <Stack.Screen name="Profile" component={Profile}/>
             <Stack.Screen name="Extract" component={Extract}/>
             <Stack.Screen name="Favorite" component={Favorite} />
-            <Stack.Screen name="Shopping" component={Shopping} />
         </Stack.Navigator>
     )
 }
