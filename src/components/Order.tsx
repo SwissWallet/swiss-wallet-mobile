@@ -54,7 +54,7 @@ function Order({order}:props):JSX.Element {
         const response = await api.delete(`orders?idOrder=${order.id}`)
         .then(() => {
             Alert.alert('Pedido', 'Pedido Cancelado');
-            navigation.replace('Shopping')
+            navigation.replace('HomeTab', {screen: 'Shopping'})
         })
         .catch(err => console.log(err));
     }
