@@ -24,6 +24,21 @@ function SignIn(): JSX.Element {
     const [showPassword, setShowPassword] = useState(false);
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
+    const [marginTopBehavior, setMarginTopBehavior] = useState(230);
+
+    useEffect(() => {
+        const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
+          setMarginTopBehavior(150);
+        });
+        const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
+          setMarginTopBehavior(230);
+        });
+    
+        return () => {
+          showSubscription.remove();
+          hideSubscription.remove();
+        };
+    }, []);
 
     const handleState = () => {
         setShowPassword(prevState => !prevState);
@@ -103,7 +118,7 @@ function SignIn(): JSX.Element {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <LinearGradient colors={["#e30613", "#9a1915", "#681413"]} style={{ flex: 1 }}>
-                <Box flex={1} ml={22} mr={22} mt={230}>
+                <Box flex={1} ml={22} mr={22} mt={marginTopBehavior}>
                     <Box width={304} alignItems="flex-start">
                         <Box marginBottom={50} alignItems="flex-start">
                             <Text size="4xl" fontWeight="$bold" color="$white" fontFamily="">Login</Text>
