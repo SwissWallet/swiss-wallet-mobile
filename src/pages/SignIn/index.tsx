@@ -28,7 +28,7 @@ function SignIn(): JSX.Element {
 
     useEffect(() => {
         const showSubscription = Keyboard.addListener('keyboardDidShow', () => {
-          setMarginTopBehavior(150);
+          setMarginTopBehavior('10%');
         });
         const hideSubscription = Keyboard.addListener('keyboardDidHide', () => {
           setMarginTopBehavior(230);
