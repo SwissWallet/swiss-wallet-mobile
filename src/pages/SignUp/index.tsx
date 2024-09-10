@@ -151,6 +151,7 @@ function SignUp(): JSX.Element {
                                 <InputField color="#000" fontWeight="bold" keyboardType="numeric" onChangeText={(text) => {
                                     if(text.length === 2) setDataNascimento(text + '/')
                                     else if (text.length === 5) setDataNascimento(text + '/')
+                                    else if (text.length > 10) setDataNascimento(dataNascimento.slice(0, 10))
                                     else setDataNascimento(text)
                                 }} value={dataNascimento}/>
                             </Input>
