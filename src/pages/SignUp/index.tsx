@@ -148,7 +148,11 @@ function SignUp(): JSX.Element {
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setDataNascimento(text)}/>
+                                <InputField color="#000" fontWeight="bold" keyboardType="numeric" onChangeText={(text) => {
+                                    if(text.length === 2) setDataNascimento(text + '/')
+                                    else if (text.length === 5) setDataNascimento(text + '/')
+                                    else setDataNascimento(text)
+                                }} value={dataNascimento}/>
                             </Input>
                         </Box>
                         
