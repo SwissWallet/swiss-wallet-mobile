@@ -118,14 +118,14 @@ function SignIn(): JSX.Element {
     return (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <LinearGradient colors={["#e30613", "#9a1915", "#681413"]} style={{ flex: 1 }}>
-                <Box flex={1} ml={22} mr={22} mt={marginTopBehavior}>
-                    <Box width={304} alignItems="flex-start">
+                <Box flex={1} ml={25} mr={25} mt={marginTopBehavior}>
+                    <Box alignItems="flex-start" >
                         <Box marginBottom={50} alignItems="flex-start">
                             <Text size="4xl" fontWeight="$bold" color="$white" fontFamily="">Login</Text>
                         </Box>
 
-                        <Box marginBottom={15} w={380}>
-                            <Input variant="underlined" size="md" borderColor="$white" style={{borderBottomColor: '#ffffff'}} width="90%" marginBottom={30} gap={10}>
+                        <Box marginBottom={15} w={'100%'}>
+                            <Input variant="underlined" size="md" borderColor="$white" style={{borderBottomColor: '#ffffff'}} marginBottom={30} gap={10}>
                                 <InputSlot pl="$3">
                                     <InputIcon as={User} color="$white" size="24"/>
                                 </InputSlot>
@@ -138,7 +138,7 @@ function SignIn(): JSX.Element {
                             </Input>
 
                             <Box>
-                                <Input variant="underlined" size="md" borderColor="$white" width="90%" gap={10} style={{borderBottomColor: '#ffffff'}}>
+                                <Input variant="underlined" size="md" borderColor="$white" gap={10} style={{borderBottomColor: '#ffffff'}}>
                                     <InputSlot pl="$3">
                                         <InputIcon as={Lock} color="$white" size="23"/>
                                     </InputSlot>
@@ -150,30 +150,23 @@ function SignIn(): JSX.Element {
                                         value={password}
                                         onChangeText={(text) => setPassword(text)}
                                     />
+                                    <InputSlot>
+                                        <TouchableOpacity onPress={handleState} >
+                                            <InputIcon as={showPassword ? Eye : EyeOff} color="#fff" size="23"/>
+                                        </TouchableOpacity>
+                                    </InputSlot>
                                 </Input>
-                                <TouchableOpacity 
-                                    onPress={handleState} 
-                                    style={{
-                                        position: 'absolute',
-                                        right: 10,
-                                        top: '50%',
-                                        transform: [{ translateY: -15 }],
-                                        justifyContent: 'center',
-                                        paddingHorizontal: 30
-                                    }}
-                                >
-                                    <InputIcon as={showPassword ? Eye : EyeOff} color="#fff" size="23"/>
-                                </TouchableOpacity>
+                            
                             </Box>
                         </Box>
 
-                        <Box width="90%" alignItems="flex-end" marginBottom={40} ml={80}>
+                        <Box marginBottom={40} alignSelf="flex-end">
                             <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword' as never)}>
                                 <Text underline={true} color="$white" fontSize={15}>Esqueci minha senha</Text>
                             </TouchableOpacity>
                         </Box>
 
-                        <Box width="100%" ml={30} mr={22}>
+                        <Box width="100%" >
                             <TouchableOpacity onPress={LoginUser}>
                                 <DropShadow style={{
                                     shadowColor: "#000",
