@@ -43,6 +43,7 @@ function ProductCard({categoria}: PropsProductCard):JSX.Element{
     return(
         (
             products.length == 0 ? '' : (
+
             <View>
                 <Box>
                     <Box justifyContent="center" alignItems="center">
@@ -90,6 +91,7 @@ function ProductCard({categoria}: PropsProductCard):JSX.Element{
                     </Box>
                 </Box>
             </View>
+            
             )
         )
         
