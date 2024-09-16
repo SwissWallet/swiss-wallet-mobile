@@ -84,6 +84,9 @@ function SignIn(): JSX.Element {
             else if (err.response.status === 422) {
                 return Alert.alert('Erro', 'Algo inesperado aconteceu');
             }
+            else {
+                return Alert.alert('Erro', 'Algo inesperado aconteceu');
+            }
         })
     }
 
