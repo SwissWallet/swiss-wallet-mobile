@@ -12,19 +12,21 @@ function Profile(): JSX.Element{
     return(
         <View>
              <HeaderWithoutPoints />
+             <Box ml={22} mr={22}>
+
              <Box>
-                <Text color="#000" fontWeight="bold" fontSize={32} marginTop={40}  marginLeft={30}>Perfil</Text>
-                <Text color="#000" mt={5}  marginLeft={30}>Informações do usuário</Text>
+                <Text color="#000" fontWeight="bold" fontSize={32} marginTop={40} >Perfil</Text>
+                <Text color="#000" mt={5}>Informações do usuário</Text>
             </Box> 
  
             <Box>
-                <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={39}>Nome completo</Text>
-                <Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365} isDisabled>
+                <Text fontWeight="$bold" color="#000" fontSize={17} mt={39}>Nome completo</Text>
+                <Input mt={7} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6"  isDisabled>
                     <InputField color="#000" fontWeight="bold" value={user.user.name}/>
                 </Input>
 
-                <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={39}>Email</Text>
-                <Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365} isDisabled>
+                <Text fontWeight="$bold" color="#000" fontSize={17} mt={39}>Email</Text>
+                <Input mt={7}   bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6"  isDisabled>
                     <InputField color="#000" fontWeight="bold" value={user.user.username}/>
                 </Input>
 
@@ -33,8 +35,8 @@ function Profile(): JSX.Element{
             <HStack alignItems="center">
 
                     <Box>
-                        <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={39}>CPF</Text>
-                        <Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={200} isDisabled>
+                        <Text fontWeight="$bold" color="#000" fontSize={17}   mt={39}>CPF</Text>
+                        <Input mt={7}  bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={200} isDisabled>
                             <InputField color="#000" fontWeight="bold" value={user.user.cpf}/>
                         </Input>
                     </Box>
@@ -46,7 +48,7 @@ function Profile(): JSX.Element{
                         </Input>
                     </Box>
             </HStack>  
-
+            </Box>
          </View>
     )
 }

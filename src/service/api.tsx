@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: 'http://172.16.1.62:8080/api/v3/'
+    baseURL: 'https://swiss-wallet-backend.onrender.com/api/v3/'
 });
 
 export default api;
