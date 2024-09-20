@@ -22,7 +22,7 @@ function Order({order}:props):JSX.Element {
         color = '#848484'
         status = 'Finalizado'
     }
-    else if (order.status === 'SEPARETD') {
+    else if (order.status === 'SEPARATED') {
         color = '#006d12'
         status = 'Pronto para retirada'
     }

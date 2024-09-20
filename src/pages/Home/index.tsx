@@ -52,7 +52,7 @@ function Home():JSX.Element{
                             
                         <TouchableOpacity onPress={() => navigation.navigate('Store' as never)}>
                             <HStack justifyContent="space-between" alignItems="center" ml={22} mr={22} mt={20} mb={20}>
-                                <Text fontWeight={"$extrabold"} fontSize={25} color="#000">Camisas</Text>
+                                <Text fontWeight={"$extrabold"} fontSize={25} color="#000">Loja</Text>
                                 <Icon as={ChevronRight} color="#000" size="xl"/>
                             </HStack>
                         </TouchableOpacity>
