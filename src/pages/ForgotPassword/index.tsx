@@ -107,38 +107,26 @@ function ForgotPassword():JSX.Element{
 
                     </Box>
 
-                    <Box bgColor="#fff" height="$full" borderTopRightRadius={15} borderTopLeftRadius={15} justifyContent="center" alignItems="center">
+                    <Box bgColor="#fff" height="$full" borderTopRightRadius={15} borderTopLeftRadius={15}>
                                 
                         <Box ml={22} mr={22}>
                             <Text mt={20} mb={10} fontWeight="$bold" color="#000" fontSize={17}>
                                 Informe o email
                             </Text>
 
-                            <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
-                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setEmail(text)}/>
+                            <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
+                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setEmail(text)} />
                             </Input>
                         </Box>
                         
 
                         <TouchableOpacity onPress={handleConfirm}>
-                            <Box ml={22} mr={22} bgColor="#9A1915" mt={35} alignItems="center" justifyContent="center" height={45} borderRadius={20} width={365}>
+                            <Box ml={22} mr={22} bgColor="#9A1915" mt={23} alignItems="center" justifyContent="center" height={45} borderRadius={20}>
                                 <Text color="#fff" fontWeight="$bold">
                                     Confirmar
                                 </Text>
                             </Box>
                         </TouchableOpacity>
-
-                        <Box flexDirection="row" gap={10} mt={290} alignSelf="center">
-                            <Text color="#000" fontWeight="bold">
-                                Já possui conta?
-                            </Text>
-                            <TouchableOpacity onPress={() => navigation.navigate('SignIn' as never)}>
-                                <Text underline color="#000" fontWeight="bold">
-                                    Faça o login
-                                </Text>
-                            </TouchableOpacity>
-                        </Box>
-
                     </Box>
 
                     <Modal transparent visible={loading}>
@@ -173,14 +161,14 @@ function ForgotPassword():JSX.Element{
                                 </Box>
 
                                 
-                                <View justifyContent="center" alignItems="center" flex={1} borderTopRightRadius={20} bgColor="#fff" borderTopLeftRadius={20}> 
+                                <View flex={1} borderTopRightRadius={20} bgColor="#fff" borderTopLeftRadius={20}> 
                                     
                                     <Box ml={22} mr={22}>
                                         <Text mt={20} mb={10} fontWeight="$bold" color="#000" fontSize={17}>
                                             Nova senha
                                         </Text>
 
-                                        <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
+                                        <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
                                             <InputSlot mr={10} ml={5}>
                                                 <InputIcon as={Lock} color="#000" size="xl"/>
                                             </InputSlot>
@@ -201,13 +189,13 @@ function ForgotPassword():JSX.Element{
                                             Código de verificação
                                         </Text>
 
-                                        <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
+                                        <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
                                             <InputField color="#000" fontWeight="bold" onChangeText={(text) => setCode(text)}/>
                                         </Input>
                                     </Box>
 
                                     <TouchableOpacity onPress={handleChangePassowrd}>
-                                        <Box ml={22} mr={22} bgColor="#9A1915" mt={35} mb={30} alignItems="center" justifyContent="center" height={45} borderRadius={20} width={365}>
+                                        <Box ml={22} mr={22} bgColor="#9A1915" mt={35} mb={30} alignItems="center" justifyContent="center" height={45} borderRadius={20}>
                                             <Text color="#fff" fontWeight="$bold">
                                                 Confirmar
                                             </Text>
