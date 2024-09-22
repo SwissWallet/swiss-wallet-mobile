@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { Button, ButtonText, HStack, InputField, InputIcon, InputSlot, Text, View } from "@gluestack-ui/themed";
+import { Button, ButtonText, Divider, HStack, InputField, InputIcon, InputSlot, ScrollView, Text, View } from "@gluestack-ui/themed";
 import { Box } from '@gluestack-ui/themed';
 import { Input } from '@gluestack-ui/themed';
 import { useNavigation } from "@react-navigation/native";
@@ -119,85 +119,87 @@ function SignIn(): JSX.Element {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <LinearGradient colors={["#e30613", "#9a1915", "#681413"]} style={{ flex: 1 }}>
-                <Box flex={1} ml={25} mr={25} mt={marginTopBehavior}>
-                    <Box alignItems="flex-start" >
-                        <Box marginBottom={50} alignItems="flex-start">
-                            <Text size="4xl" fontWeight="$bold" color="$white" fontFamily="">Login</Text>
-                        </Box>
+        <ScrollView flex={1} bgColor="#681413" showsVerticalScrollIndicator={false}>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <LinearGradient colors={["#e30613", "#9a1915", "#681413"]} style={{ flex: 1 }}>
+                        <Box flex={1} ml={25} mr={25} mt={marginTopBehavior}>
+                            <Box alignItems="flex-start" >
+                                <Box marginBottom={50} alignItems="flex-start">
+                                    <Text size="4xl" fontWeight="$bold" color="$white" fontFamily="">Login</Text>
+                                </Box>
 
-                        <Box marginBottom={15} w={'100%'}>
-                            <Input variant="underlined" size="md" borderColor="$white" style={{borderBottomColor: '#ffffff'}} marginBottom={30} gap={10}>
-                                <InputSlot pl="$3">
-                                    <InputIcon as={User} color="$white" size="24"/>
-                                </InputSlot>
-                                <InputField 
-                                color={"$white"}
-                                placeholder='Digite seu email' 
-                                placeholderTextColor={"#fff"} 
-                                value={email} 
-                                onChangeText={(text) => setEmail(text)}/>
-                            </Input>
+                                <Box marginBottom={15} w={'100%'}>
+                                    <Input variant="underlined" size="md" borderColor="$white" style={{borderBottomColor: '#ffffff'}} marginBottom={30} gap={10}>
+                                        <InputSlot pl="$3">
+                                            <InputIcon as={User} color="$white" size="24"/>
+                                        </InputSlot>
+                                        <InputField 
+                                        color={"$white"}
+                                        placeholder='Digite seu email' 
+                                        placeholderTextColor={"#fff"} 
+                                        value={email} 
+                                        onChangeText={(text) => setEmail(text)}/>
+                                    </Input>
 
-                            <Box>
-                                <Input variant="underlined" size="md" borderColor="$white" gap={10} style={{borderBottomColor: '#ffffff'}}>
-                                    <InputSlot pl="$3">
-                                        <InputIcon as={Lock} color="$white" size="23"/>
-                                    </InputSlot>
-                                    <InputField 
-                                        type={showPassword ? "text" : "password"} 
-                                        placeholder='Digite sua senha'
-                                        placeholderTextColor={"#fff"}
-                                        style={{ paddingRight: 40, color: '#ffffff' }} 
-                                        value={password}
-                                        onChangeText={(text) => setPassword(text)}
-                                    />
-                                    <InputSlot>
-                                        <TouchableOpacity onPress={handleState} >
-                                            <InputIcon as={showPassword ? Eye : EyeOff} color="#fff" size="23"/>
-                                        </TouchableOpacity>
-                                    </InputSlot>
-                                </Input>
-                            
-                            </Box>
-                        </Box>
-
-                        <Box marginBottom={40} alignSelf="flex-end">
-                            <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword' as never)}>
-                                <Text underline={true} color="$white" fontSize={15}>Esqueci minha senha</Text>
-                            </TouchableOpacity>
-                        </Box>
-
-                        <Box width="100%" >
-                            <TouchableOpacity onPress={LoginUser}>
-                                <DropShadow style={{
-                                    shadowColor: "#000",
-                                    shadowOffset: { width: 2, height: 5 },
-                                    shadowOpacity: 0.7,
-                                    shadowRadius: 5
-                                }}>
-                                    <Box height={45} bgColor="#9A1915" alignItems="center" justifyContent="center" borderRadius={10}>
-                                        <Text color="$white">Login</Text>
+                                    <Box>
+                                        <Input variant="underlined" size="md" borderColor="$white" gap={10} style={{borderBottomColor: '#ffffff'}}>
+                                            <InputSlot pl="$3">
+                                                <InputIcon as={Lock} color="$white" size="23"/>
+                                            </InputSlot>
+                                            <InputField 
+                                                type={showPassword ? "text" : "password"} 
+                                                placeholder='Digite sua senha'
+                                                placeholderTextColor={"#fff"}
+                                                style={{ paddingRight: 40, color: '#ffffff' }} 
+                                                value={password}
+                                                onChangeText={(text) => setPassword(text)}
+                                            />
+                                            <InputSlot>
+                                                <TouchableOpacity onPress={handleState} >
+                                                    <InputIcon as={showPassword ? Eye : EyeOff} color="#fff" size="23"/>
+                                                </TouchableOpacity>
+                                            </InputSlot>
+                                        </Input>
+                                    
                                     </Box>
-                                </DropShadow>
-                            </TouchableOpacity>
+                                </Box>
+
+                                <Box marginBottom={40} alignSelf="flex-end">
+                                    <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword' as never)}>
+                                        <Text underline={true} color="$white" fontSize={15}>Esqueci minha senha</Text>
+                                    </TouchableOpacity>
+                                </Box>
+
+                                <Box width="100%" mb={20}>
+                                    <TouchableOpacity onPress={LoginUser}>
+                                        <DropShadow style={{
+                                            shadowColor: "#000",
+                                            shadowOffset: { width: 2, height: 5 },
+                                            shadowOpacity: 0.7,
+                                            shadowRadius: 5
+                                        }}>
+                                            <Box height={45} bgColor="#9A1915" alignItems="center" justifyContent="center" borderRadius={10}>
+                                                <Text color="$white">Login</Text>
+                                            </Box>
+                                        </DropShadow>
+                                    </TouchableOpacity>
+                                </Box>
+                            </Box>
+
+
+                            <DropShadow style={{shadowColor: "#000", shadowOffset:{width: 1, height: 4}, shadowOpacity: 0.5, shadowRadius: 2}}>
+                                <TouchableOpacity onPress={() => navigation.navigate('SignUp' as never)}>
+                                    <Box bgColor="#fff" borderColor="#E30613" borderWidth={1} borderRadius={10} mb={20} height={45}>
+                                        <Text height={40} color="#E30613" fontWeight="$bold" textAlign="center" textAlignVertical="center">
+                                            Criar Conta
+                                        </Text>
+                                    </Box>
+                                </TouchableOpacity>
+                            </DropShadow>
                         </Box>
-                    </Box>
-
-
-                    <Box width="100%" alignItems="center" position="absolute" bottom={20}>
-                        <HStack>
-                            <Text color="$white">Não possui conta?</Text>
-                            <TouchableOpacity onPress={()=> navigation.navigate('SignUp' as never)}> 
-                                <Text color="$white" underline={true}> cadastre-se</Text>
-                            </TouchableOpacity>
-                        </HStack>
-                    </Box>
-                </Box>
-
-        </LinearGradient>
-        </TouchableWithoutFeedback>
+                </LinearGradient>
+            </TouchableWithoutFeedback>
+        </ScrollView>
     );
 }
 
