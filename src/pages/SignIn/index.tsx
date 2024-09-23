@@ -125,13 +125,13 @@ function SignIn(): JSX.Element {
                         <Box flex={1} ml={25} mr={25} mt={marginTopBehavior}>
                             <Box alignItems="flex-start" >
                                 <Box marginBottom={50} alignItems="flex-start">
-                                    <Text size="4xl" fontWeight="$bold" color="$white" fontFamily="">Login</Text>
+                                    <Text size="4xl" fontWeight="$bold" color="$white" fontFamily="" accessible accessibilityLabel="Login">Login</Text>
                                 </Box>
 
                                 <Box marginBottom={15} w={'100%'}>
                                     <Input variant="underlined" size="md" borderColor="$white" style={{borderBottomColor: '#ffffff'}} marginBottom={30} gap={10}>
                                         <InputSlot pl="$3">
-                                            <InputIcon as={User} color="$white" size="24"/>
+                                            <InputIcon as={User} color="$white" size="24" accessible accessibilityLabel="Icone pessoa"/>
                                         </InputSlot>
                                         <InputField 
                                         color={"$white"}
@@ -144,7 +144,7 @@ function SignIn(): JSX.Element {
                                     <Box>
                                         <Input variant="underlined" size="md" borderColor="$white" gap={10} style={{borderBottomColor: '#ffffff'}}>
                                             <InputSlot pl="$3">
-                                                <InputIcon as={Lock} color="$white" size="23"/>
+                                                <InputIcon as={Lock} color="$white" size="23" accessible accessibilityLabel="Icone cadeado"/>
                                             </InputSlot>
                                             <InputField 
                                                 type={showPassword ? "text" : "password"} 
@@ -156,7 +156,7 @@ function SignIn(): JSX.Element {
                                             />
                                             <InputSlot>
                                                 <TouchableOpacity onPress={handleState} >
-                                                    <InputIcon as={showPassword ? Eye : EyeOff} color="#fff" size="23"/>
+                                                    <InputIcon as={showPassword ? Eye : EyeOff} color="#fff" size="23" accessible accessibilityLabel="Icone olho"/>
                                                 </TouchableOpacity>
                                             </InputSlot>
                                         </Input>
@@ -166,7 +166,7 @@ function SignIn(): JSX.Element {
 
                                 <Box marginBottom={40} alignSelf="flex-end">
                                     <TouchableOpacity onPress={() => navigation.navigate('ForgotPassword' as never)}>
-                                        <Text underline={true} color="$white" fontSize={15}>Esqueci minha senha</Text>
+                                        <Text underline={true} color="$white" fontSize={15} accessible accessibilityLabel="Esqueci minha senha botão">Esqueci minha senha</Text>
                                     </TouchableOpacity>
                                 </Box>
 
@@ -179,7 +179,7 @@ function SignIn(): JSX.Element {
                                             shadowRadius: 5
                                         }}>
                                             <Box height={45} bgColor="#9A1915" alignItems="center" justifyContent="center" borderRadius={10}>
-                                                <Text color="$white">Login</Text>
+                                                <Text color="$white" accessible accessibilityLabel="login botão">Login</Text>
                                             </Box>
                                         </DropShadow>
                                     </TouchableOpacity>
@@ -190,7 +190,7 @@ function SignIn(): JSX.Element {
                             <DropShadow style={{shadowColor: "#000", shadowOffset:{width: 1, height: 4}, shadowOpacity: 0.5, shadowRadius: 2}}>
                                 <TouchableOpacity onPress={() => navigation.navigate('SignUp' as never)}>
                                     <Box bgColor="#fff" borderColor="#E30613" borderWidth={1} borderRadius={10} mb={20} height={45}>
-                                        <Text height={40} color="#E30613" fontWeight="$bold" textAlign="center" textAlignVertical="center">
+                                        <Text height={40} color="#E30613" fontWeight="$bold" textAlign="center" textAlignVertical="center" accessible accessibilityLabel="Criar conta botão">
                                             Criar Conta
                                         </Text>
                                     </Box>
