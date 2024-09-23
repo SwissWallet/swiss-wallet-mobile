@@ -89,13 +89,13 @@ function ForgotPassword():JSX.Element{
     }, 10000);
     return(
         <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
-                <View flex={1} bgColor="#E30613">
+                <View flex={1} bgColor="#E30613" accesibility accessibilityLabel="Tela esqueci a senha">
 
                     <Box>
 
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <Box mt={27} ml={25} mb={18}>
-                                <Icon as={ArrowLeftCircle} color="#fff" size={"40"} />
+                                <Icon as={ArrowLeftCircle} color="#fff" size={"40"} accesibility accessibilityLabel="Icone voltar, botão"/>
                             </Box>
                         </TouchableOpacity>
 
@@ -115,21 +115,21 @@ function ForgotPassword():JSX.Element{
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setEmail(text)} />
+                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setEmail(text)} accesibility accessibilityHint="digite seu email"/>
                             </Input>
                         </Box>
                         
 
                         <TouchableOpacity onPress={handleConfirm}>
                             <Box ml={22} mr={22} bgColor="#9A1915" mt={23} alignItems="center" justifyContent="center" height={45} borderRadius={20}>
-                                <Text color="#fff" fontWeight="$bold">
+                                <Text color="#fff" fontWeight="$bold" accesibility accessibilityLabel="Confirmar, botão">
                                     Confirmar
                                 </Text>
                             </Box>
                         </TouchableOpacity>
                     </Box>
 
-                    <Modal transparent visible={loading}>
+                    <Modal transparent visible={loading} accesibility accessibilityState={loading} accessibilityValue={"Carregando"}>
                         <View flex={1} justifyContent="center" alignItems="center">
                             <ActivityIndicator size="large" color="#000"/>
                         </View>
@@ -148,7 +148,7 @@ function ForgotPassword():JSX.Element{
                                 <Box >
                                     <TouchableOpacity onPress={() => setVisibleModal(!visibleModal)} style={{width: 50}}>
                                         <Box mt={27} ml={25} mb={18}>
-                                            <Icon as={ArrowLeftCircle} color="#fff" size={"40"} />
+                                            <Icon as={ArrowLeftCircle} color="#fff" size={"40"} accesibility accessibilityLabel="Icone voltar, botão"/>
                                         </Box>
                                     </TouchableOpacity>
 
@@ -170,7 +170,7 @@ function ForgotPassword():JSX.Element{
 
                                         <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
                                             <InputSlot mr={10} ml={5}>
-                                                <InputIcon as={Lock} color="#000" size="xl"/>
+                                                <InputIcon as={Lock} color="#000" size="xl" accesibility accessibilityLabel="Icone de cadeado"/>
                                             </InputSlot>
                                     
                                             <InputField placeholder="Digite sua senha"  opacity={0.6} color="#000" 
@@ -179,7 +179,7 @@ function ForgotPassword():JSX.Element{
                                             />
                                     
                                             <InputSlot mr={10} onPress={handleState}>
-                                                <InputIcon as={showPassword ? EyeIcon : EyeOff} color="#000" size="xl"/>
+                                                <InputIcon as={showPassword ? EyeIcon : EyeOff} color="#000" size="xl" accesibility accessibilityLabel="Icone olho"/>
                                             </InputSlot>
                                         </Input>
                                     </Box>
@@ -190,13 +190,13 @@ function ForgotPassword():JSX.Element{
                                         </Text>
 
                                         <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                            <InputField color="#000" fontWeight="bold" onChangeText={(text) => setCode(text)}/>
+                                            <InputField color="#000" fontWeight="bold" onChangeText={(text) => setCode(text)} accesibility accessibilityLabel="digite o código enviado para o email"/>
                                         </Input>
                                     </Box>
 
                                     <TouchableOpacity onPress={handleChangePassowrd}>
                                         <Box ml={22} mr={22} bgColor="#9A1915" mt={35} mb={30} alignItems="center" justifyContent="center" height={45} borderRadius={20}>
-                                            <Text color="#fff" fontWeight="$bold">
+                                            <Text color="#fff" fontWeight="$bold" accesibility accessibilityLabel="Confirmar, botão">
                                                 Confirmar
                                             </Text>
                                         </Box>
