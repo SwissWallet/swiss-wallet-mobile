@@ -118,7 +118,7 @@ function SignUp(): JSX.Element {
 
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <Box mt={27} ml={25} mb={18}>
-                                <Icon as={ArrowLeftCircle} color="#fff" size={"40"} />
+                                <Icon as={ArrowLeftCircle} color="#fff" size={"40"} accesibility accessibilityLabel="Icone voltar, botão"/>
                             </Box>
                         </TouchableOpacity>
 
@@ -138,7 +138,7 @@ function SignUp(): JSX.Element {
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setNome(text)}/>
+                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setNome(text)} accesibility accessibilityHint="digite seu nome"/>
                             </Input>
                         </Box>
                         
@@ -153,7 +153,7 @@ function SignUp(): JSX.Element {
                                     else if (text.length === 5) setDataNascimento(text + '/')
                                     else if (text.length > 10) setDataNascimento(dataNascimento.slice(0, 10))
                                     else setDataNascimento(text)
-                                }} value={dataNascimento}/>
+                                }} value={dataNascimento} accesibility accessibilityHint="digite sua data de nascimento"/>
                             </Input>
                         </Box>
                         
@@ -163,7 +163,7 @@ function SignUp(): JSX.Element {
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setEmail(text)}/>
+                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setEmail(text)} accesibility accessibilityHint="digite seu email"/>
                             </Input>
                         </Box>
                         
@@ -173,7 +173,7 @@ function SignUp(): JSX.Element {
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" onChangeText={text => setCpf(text)} keyboardType="number-pad"/>
+                                <InputField color="#000" fontWeight="bold" onChangeText={text => setCpf(text)} keyboardType="number-pad" accesibility accessibilityHint="digite seu cpf"/>
                             </Input>
                         </Box>
 
@@ -183,7 +183,7 @@ function SignUp(): JSX.Element {
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setTelefone(text)} keyboardType="number-pad" />
+                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setTelefone(text)} keyboardType="number-pad" accesibility accessibilityHint="digite seu telefone"/>
                             </Input>
                         </Box>
                         
@@ -193,7 +193,7 @@ function SignUp(): JSX.Element {
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setCep(text)} />
+                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setCep(text)} accesibility accessibilityHint="digite seu cep" keyboardType="numeric"/>
                             </Input>
                         </Box>
                         
@@ -235,7 +235,7 @@ function SignUp(): JSX.Element {
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setNumero(text)}/>
+                                <InputField color="#000" fontWeight="bold" onChangeText={(text) => setNumero(text)} accesibility accessibilityHint="digite o número da sua casa"/>
                             </Input>
                         </Box>
                         
@@ -245,10 +245,10 @@ function SignUp(): JSX.Element {
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" type={showPassword ? "text" : "password"} onChangeText={(text) => setSenha(text)}/>
+                                <InputField color="#000" fontWeight="bold" type={showPassword ? "text" : "password"} onChangeText={(text) => setSenha(text)} accesibility accessibilityHint="criar senha"/>
 
                                 <InputSlot onPress={handleState}>
-                                    <InputIcon as={showPassword ? EyeIcon : EyeOff} color="#000" size="xl" mr={15}/>
+                                    <InputIcon as={showPassword ? EyeIcon : EyeOff} color="#000" size="xl" mr={15} accesibility accessibilityLabel="Icone olho"/>
                                 </InputSlot>
                             </Input>
                         </Box>
@@ -259,10 +259,10 @@ function SignUp(): JSX.Element {
                             </Text>
 
                             <Input bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6">
-                                <InputField color="#000" fontWeight="bold" type={showPassword ? "text" : "password"} onChangeText={(text) => setConfirmarSenha(text)}/>
+                                <InputField color="#000" fontWeight="bold" type={showPassword ? "text" : "password"} onChangeText={(text) => setConfirmarSenha(text)} accesibility accessibilityHint="confirmar senha"/>
 
                                 <InputSlot onPress={handleState}>
-                                    <InputIcon as={showPassword ? EyeIcon : EyeOff} color="#000" size="xl" mr={15}/>
+                                    <InputIcon as={showPassword ? EyeIcon : EyeOff} color="#000" size="xl" mr={15} accesibility accessibilityLabel="Icone olho"/>
                                 </InputSlot>
                             </Input>
                         </Box>
@@ -270,7 +270,7 @@ function SignUp(): JSX.Element {
 
                         <TouchableOpacity onPress={handleRegister}>
                             <Box ml={22} mr={22} bgColor="#9A1915" mt={35} alignItems="center" justifyContent="center" height={45} borderRadius={20}>
-                                <Text color="#fff" fontWeight="$bold">
+                                <Text color="#fff" fontWeight="$bold" accesibility accessibilityLabel="Cadastrar, botão">
                                     Cadastrar
                                 </Text>
                             </Box>
@@ -281,7 +281,7 @@ function SignUp(): JSX.Element {
                                 Já possui conta?
                             </Text>
                             <TouchableOpacity onPress={() => navigation.navigate('SignIn' as never)}>
-                                <Text underline color="#000" fontWeight="bold">
+                                <Text underline color="#000" fontWeight="bold" accesibility accessibilityLabel="Voltar para a tela de login, botão">
                                     Faça o login
                                 </Text>
                             </TouchableOpacity>
