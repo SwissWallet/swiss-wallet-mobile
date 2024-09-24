@@ -33,10 +33,10 @@ function HeaderWithPoints():JSX.Element {
                         <Box flexDirection="row">
                             
                             <TouchableOpacity onPress={() => navigation.navigate('Profile' as never)}>
-                                <Icon as={User} size="xl" color="#fff"/>
+                                <Icon as={User} size="xl" color="#fff" accessible accessibilityLabel="Icone pessoa, botão"/>
                             </TouchableOpacity>
 
-                            <Text color="#fff" ml={6} >
+                            <Text color="#fff" ml={6}>
                                 Olá {user.user.name}
                             </Text>
                                 
@@ -45,11 +45,11 @@ function HeaderWithPoints():JSX.Element {
                         <Box flexDirection="row" gap={10} alignItems="center">
                             
                             <TouchableOpacity>
-                                <Icon as={Bell} color="#fff" size="lg"/>
+                                <Icon as={Bell} color="#fff" size="lg" accessible accessibilityLabel="Icone notificações"/>
                             </TouchableOpacity>
                             
                             <TouchableOpacity onPress={() => navigation.navigate('Settings' as never)}>
-                                <Icon as={Settings} color="#fff" size="xl"/>
+                                <Icon as={Settings} color="#fff" size="xl" accessible accessibilityLabel="Icone configurações, botão"/>
                             </TouchableOpacity>
                         </Box>
 
@@ -71,7 +71,7 @@ function HeaderWithPoints():JSX.Element {
 
                                     <TouchableOpacity onPress={() => navigation.navigate('Extract' as never)}>
                                         <HStack alignItems="center">
-                                            <Text fontWeight="$medium" color="#000">
+                                            <Text fontWeight="$medium" color="#000" accessible accessibilityLabel="Extrato, botão">
                                                 Ver extrato
                                             </Text>
                                             <Icon as={ChevronRight}/>
@@ -80,12 +80,12 @@ function HeaderWithPoints():JSX.Element {
                                 </HStack>
 
                                 <HStack justifyContent="space-between" alignItems="center">
-                                    <Text fontSize={22} color="#000" fontWeight="$extrabold" >
+                                    <Text fontSize={22} color="#000" fontWeight="$extrabold">
                                         Pontos {visible}
                                     </Text>
 
                                     <TouchableOpacity onPress={handlePoints}>
-                                        <Icon as={Eye} color="#000" size="xl"/> 
+                                        <Icon as={Eye} color="#000" size="xl" accessible accessibilityLabel="Icone olho, botão"/> 
                                     </TouchableOpacity>
                                 </HStack>
 
