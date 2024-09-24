@@ -43,7 +43,7 @@ function AccountSettings():JSX.Element{
                 style={{shadowColor: '#000', shadowOffset: {width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5}}>
                 <TouchableOpacity onPress={()=>navigation.navigate("ChangingPassword" as never)}>
                     <Box ml={22} mr={22} bgColor="#9A1915" mt={45} alignItems="center" justifyContent="center" height={45} borderRadius={10} width={365}>
-                                    <Text color="#fff" fontWeight="$bold">
+                                    <Text color="#fff" fontWeight="$bold" accessible accessibilityLabel="Alterar senha, botão">
                                         Alterar senha
                                     </Text>
                                 </Box>
@@ -55,7 +55,7 @@ function AccountSettings():JSX.Element{
                 style={{shadowColor: '#000', shadowOffset: {width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5}}>
             <TouchableOpacity onPress={()=>navigation.navigate("ChangeAdress" as never)}>
                 <Box ml={22} mr={22} bgColor="#9A1915" mt={35} alignItems="center" justifyContent="center" height={45} borderRadius={10} width={365}>
-                                <Text color="#fff" fontWeight="$bold">
+                                <Text color="#fff" fontWeight="$bold" accessible accessibilityLabel="Aterar endereço, botão">
                                     Alterar endereço 
                                 </Text>
                             </Box>
