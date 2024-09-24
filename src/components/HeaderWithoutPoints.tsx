@@ -21,18 +21,18 @@ function HeaderWithoutPoints():JSX.Element{
                     <HStack justifyContent="space-between" alignItems="center">
 
                         <TouchableOpacity onPress={() => navigate.goBack()}>
-                            <Icon as={ArrowLeftCircle} color="$white" size="30"/>
+                            <Icon as={ArrowLeftCircle} color="$white" size="30" accessible accessibilityLabel="Icone voltar, botão"/>
                         </TouchableOpacity>
 
                         <Box flexDirection="row" gap={10} alignItems="center">
                             
                                 <TouchableOpacity>
-                                    <Icon as={Bell} color="$white" size="lg"/>
+                                    <Icon as={Bell} color="$white" size="lg" accessible accessibilityLabel="Icone notificações"/>
                                 </TouchableOpacity>
 
 
                                 <TouchableOpacity onPress={() => navigate.navigate('Settings' as never)}>
-                                    <Icon as={Settings} color="$white" size="xl"/>
+                                    <Icon as={Settings} color="$white" size="xl" accessible accessibilityLabel="Icone configurações, botão"/>
                                 </TouchableOpacity>
                         
                         </Box>
@@ -44,7 +44,7 @@ function HeaderWithoutPoints():JSX.Element{
                         <HStack mb={5} gap={5} alignItems="center">
 
                             <TouchableOpacity onPress={() => navigate.navigate('Profile' as never)}>
-                                <Icon as={User} color="$white" size="30"/>
+                                <Icon as={User} color="$white" size="30" accessible accessibilityLabel="Icone pessoa, botão"/>
                             </TouchableOpacity>
 
 
