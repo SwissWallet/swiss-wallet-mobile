@@ -82,7 +82,7 @@ function BoxItem({item, categoria}:props):JSX.Element {
         <Box ml={22} mr={22} bg="#fff" borderRadius={10} mb={20} pb={20} mt={5}>
             <Box>
                 <Box justifyContent="center" alignItems="center">
-                    <Image source={(`data:image/jpeg;base64,${item.image}`)} alt="camisa" width={250} height={330} mt={20}/> 
+                    <Image source={(`data:image/jpeg;base64,${item.image}`)} alt={item.name} width={250} height={330} mt={20}/> 
                 </Box>
 
                 <Box borderRadius={10} bgColor="#2A2A2A" mr={30} ml={30} height={80} justifyContent="center" mt={-25}>
@@ -95,7 +95,7 @@ function BoxItem({item, categoria}:props):JSX.Element {
 
                         <TouchableOpacity onPress={() => favoriteProdut(item.id)}>
                             <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
-                                <Icon as={Heart}  color="#fff" size="xl"/>
+                                <Icon as={Heart}  color="#fff" size="xl" accessible accessibilityLabel="Icone coracao, favoritar, botão"/>
                             </Box>
                         </TouchableOpacity>
 
@@ -104,7 +104,7 @@ function BoxItem({item, categoria}:props):JSX.Element {
                             (
                                 <TouchableOpacity onPress={confirmOrder}>
                                     <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
-                                        <Icon as={ShoppingCart} color="#fff" size="xl"/>
+                                        <Icon as={ShoppingCart} color="#fff" size="xl" accessible accessibilityLabel="Icone carrinho, fazer pedido, botão"/>
                                     </Box>
                                 </TouchableOpacity>
                             ) : 
