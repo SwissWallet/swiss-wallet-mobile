@@ -40,6 +40,8 @@ function HomeTab() {
                         tabBarIcon({size, color, focused}) {
                             return <Icon as={HomeIcon} size={25} color="#fff" color={focused ? '#000' : '#fff'}/>
                         },
+                        
+                        tabBarAccessibilityLabel: 'Tela home, botão'
                     }
                 }
             />
@@ -50,6 +52,7 @@ function HomeTab() {
                         tabBarIcon({size, color, focused}) {
                             return <Icon as={ShoppingBag} size={25} color="#fff" color={focused ? '#000' : '#fff'}/>
                         },
+                        tabBarAccessibilityLabel: 'Tela Loja, botão'
                     }
                 }
             />
@@ -60,6 +63,7 @@ function HomeTab() {
                         tabBarIcon({size, color, focused}) {
                             return <Icon as={CoffeeIcon} size={30} color="#fff" color={focused ? '#000' : '#fff'}/>
                         },
+                        tabBarAccessibilityLabel: 'Tela Cantina, botão'
                     }
                 }
             />
@@ -70,6 +74,7 @@ function HomeTab() {
                         tabBarIcon({size, color, focused}) {
                             return <Icon as={Book} size={25} color={focused ? '#000' : '#fff'}/>
                         },
+                        tabBarAccessibilityLabel: 'Tela Biblioteca, botão'
                     }
                 }
             />
@@ -80,6 +85,7 @@ function HomeTab() {
                         tabBarIcon({size, color, focused}) {
                             return <Icon as={Gift} size={27} color="#fff" color={focused ? '#000' : '#fff'}/>
                         },
+                        tabBarAccessibilityLabel: 'Tela beneficios, botão'
                     }
                 }
             />
@@ -89,6 +95,7 @@ function HomeTab() {
                         tabBarIcon({size, color, focused}) {
                             return <Icon as={ShoppingCart} size={27} color={focused ? '#000' : '#fff'} />
                         },
+                        tabBarAccessibilityLabel: 'Tela Pedidos, botão'
                     }
                 }
             />
