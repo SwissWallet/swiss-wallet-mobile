@@ -139,7 +139,7 @@ function ChangeAdress():JSX.Element{
                     <TouchableOpacity onPress={validationInputs}>
                         <DropShadow style={{shadowColor: '#000', shadowOffset: {width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5}}>
                             <Box ml={22} mr={22} bgColor="#9A1915" mt={45} alignItems="center" justifyContent="center" height={45} borderRadius={10} width={365}>
-                                <Text color="#fff" fontWeight="$bold">Confirmar</Text>
+                                <Text color="#fff" fontWeight="$bold" accessible accessibilityLabel="Confirmar, botão">Confirmar</Text>
                             </Box> 
                         </DropShadow>
                     </TouchableOpacity>
