@@ -25,12 +25,12 @@ function AccountSettings(): JSX.Element {
 
                 <Box>
                     <Text fontWeight="$bold" color="#000" fontSize={17} mt={39}>Nome</Text>
-                    <Input mt={7} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365} isDisabled>
+                    <Input mt={7} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6"  isDisabled>
                         <InputField color="#000" fontWeight="bold" value={user.user.name} />
                     </Input>
                     <Text fontWeight="$bold" color="#000" fontSize={17} mt={28}>E-mail</Text>
 
-                    <Input mt={7} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365} isDisabled>
+                    <Input mt={7} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6"  isDisabled>
                         <InputField color="#000" fontWeight="bold" value={user.user.username} />
                     </Input>
 
