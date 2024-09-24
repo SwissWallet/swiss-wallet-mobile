@@ -2,7 +2,7 @@
 import { Box, Input, InputField, Text, View } from "@gluestack-ui/themed";
 import HeaderWithoutPoints from "../../components/HeaderWithoutPoints";
 import Titlle from "../../components/Title";
-import { Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
+import { ActivityIndicator, Alert, Keyboard, TouchableOpacity, TouchableWithoutFeedback, Modal } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import React, { useState } from "react";
 import api from "../../service/api";
@@ -15,6 +15,7 @@ function ChangingPassword():JSX.Element{
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigation();
 
     async function ChangingPassword(){
@@ -28,7 +29,7 @@ function ChangingPassword():JSX.Element{
             Alert.alert("A senha deve ter no minimo 6 digitos!")
             return;
         }
-
+        setLoading(true);
         ChangePassword();
     }
 
@@ -40,9 +41,11 @@ function ChangingPassword():JSX.Element{
             confirmPassword:confirmPassword
         })
         .then((json) => {
+            setLoading(false);
             console.log(json.data);
             return Alert.alert("Senha alterada com sucesso!")
         }).catch((error) => {
+            setLoading(false);
             console.log(error);
             if(error.response.status === 400){
                 Alert.alert("Senha atual errada!")
@@ -67,10 +70,10 @@ function ChangingPassword():JSX.Element{
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}> 
             
 
-                <Box ml={30} mr={30} mt={40}>
+                <Box ml={22} mr={22} mt={10}>
 
 
-                    <Box mb={80}>
+                    <Box mb={30}>
 
                         <Text mt={20} color="$black" fontWeight={"$medium"}>Senha atual</Text>
                         <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6">
@@ -100,7 +103,13 @@ function ChangingPassword():JSX.Element{
                         </TouchableOpacity>
                     </Box>
 
+                    <Modal transparent visible={loading} accesibility accessibilityState={loading} accessibilityValue={"Carregando"}>
+                            <View flex={1} justifyContent="center" alignItems="center">
+                                <ActivityIndicator size="large" color="#000"/>
+                            </View>
+                    </Modal>
                 </Box>
+
             </TouchableWithoutFeedback>
         </View>
     )
