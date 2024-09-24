@@ -64,7 +64,7 @@ function Order({order}:props):JSX.Element {
         <Box ml={22} mr={22} bg="#fff" borderRadius={10} mb={20} mt={5}>
             <Box>
                 <Box justifyContent="center" alignItems="center">
-                    <Image source={(`data:image/jpeg;base64,${order.product.image}`)} alt="camisa" width={250} height={330} mt={20}/> 
+                    <Image source={(`data:image/jpeg;base64,${order.product.image}`)} alt={order.product.name} width={250} height={330} mt={20}/> 
                 </Box>
                 
                 <Box bgColor="#c6c6c6a7" pl={22} pr={22} pt={10} pb={10}>
@@ -75,7 +75,7 @@ function Order({order}:props):JSX.Element {
                         </Text>
                         <TouchableOpacity onPress={confirmDeleteOrder}>
                             <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
-                                <Icon as={Trash} color="#fff" size="xl"/>
+                                <Icon as={Trash} color="#fff" size="xl" accessible accessibilityLabel="Icone, cancelar pedido ,botão"/>
                             </Box>
                         </TouchableOpacity>
                     </HStack>
