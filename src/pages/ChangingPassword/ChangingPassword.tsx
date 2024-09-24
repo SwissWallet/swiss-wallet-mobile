@@ -74,17 +74,17 @@ function ChangingPassword():JSX.Element{
 
                         <Text mt={20} color="$black" fontWeight={"$medium"}>Senha atual</Text>
                         <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6">
-                            <InputField type="password" color="$black" onChangeText={(text) => setOldPassword(text)}/>
+                            <InputField type="password" color="$black" onChangeText={(text) => setOldPassword(text)} accessible accessibilityLabel="Digite a senha atual"/>
                         </Input>
 
                         <Text mt={20} color="$black" fontWeight={"$medium"} >Nova senha</Text>
                         <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6" >
-                            <InputField type="password" color="$black" onChangeText={(text) => setNewPassword(text)}/>
+                            <InputField type="password" color="$black" onChangeText={(text) => setNewPassword(text)} accessible accessibilityLabel="Digite a nova senha"/>
                         </Input>
 
                         <Text mt={20} color="$black" fontWeight={"$medium"}>Confirmar senha</Text>
                         <Input bgColor="#C6C6C6" opacity={0.5} mt={3} mb={10} borderRadius={10} borderColor="#C6C6C6" >
-                            <InputField type="password" color="$black" onChangeText={(text) => setConfirmPassword(text)} />
+                            <InputField type="password" color="$black" onChangeText={(text) => setConfirmPassword(text)} accessible accessibilityLabel="Confirme a nova senha"/>
                         </Input>
 
                     </Box>
@@ -94,7 +94,7 @@ function ChangingPassword():JSX.Element{
                         <TouchableOpacity onPress={ChangingPassword}>
                             <DropShadow  style={{shadowColor: "#000", shadowOffset: { width: 1, height: 3 }, shadowOpacity: 0.5, shadowRadius: 3}}>
                                     <Box borderRadius={10} bgColor="#9A1915" alignItems="center" justifyContent="center" height={45}>
-                                        <Text color="$white">Confirmar</Text>
+                                        <Text color="$white" accessible accessibilityLabel="Confirmar, botão">Confirmar</Text>
                                     </Box>
                             </DropShadow>
                         </TouchableOpacity>
