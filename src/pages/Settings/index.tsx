@@ -68,7 +68,7 @@ function Settings():JSX.Element{
                             <HStack space="sm" mb={5} mt={10}>
                                 <TouchableOpacity style={{flexDirection: 'row', gap: 6, alignItems: 'center'}} onPress={() => navigation.navigate('AccountSettings' as never)}>
                                     <Icon as={IdCard} size={"26"}/>
-                                <Text color="#000" fontWeight="$bold">
+                                <Text color="#000" fontWeight="$bold" accessible accessibilityLabel="Configurações da conta, botão">
                                     Configurações da conta
                                 </Text>
                                 </TouchableOpacity>
@@ -111,7 +111,7 @@ function Settings():JSX.Element{
                 <DropShadow style={{shadowColor: "#000", shadowOffset:{width: 1, height: 4}, shadowOpacity: 0.5, shadowRadius: 2}}>
                     <TouchableOpacity onPress={handelDeleteAccount}>
                         <Box bgColor="#fff" borderColor="#E30613" borderWidth={1} borderRadius={5} mb={20} height={45}>
-                            <Text height={40} color="#E30613" fontWeight="$bold" textAlign="center" textAlignVertical="center">
+                            <Text height={40} color="#E30613" fontWeight="$bold" textAlign="center" textAlignVertical="center" accessible accessibilityLabel="Apagar conta, botão">
                                 Apagar Conta
                             </Text>
                         </Box>
@@ -121,7 +121,7 @@ function Settings():JSX.Element{
                 <DropShadow style={{shadowColor: "#000", shadowOffset:{width: 1, height: 4}, shadowOpacity: 0.5, shadowRadius: 2}}>
                     <TouchableOpacity onPress={handleSigUp}>
                         <Box bgColor="#9A1915" borderRadius={5} height={45}>
-                            <Text height={40} color="#fff" fontWeight="$bold" textAlign="center" textAlignVertical="center">
+                            <Text height={40} color="#fff" fontWeight="$bold" textAlign="center" textAlignVertical="center" accessible accessibilityLabel="Sair do aplicativo, botão">
                                 Sair
                             </Text>
                         </Box>
