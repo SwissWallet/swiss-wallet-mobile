@@ -42,7 +42,7 @@ function Home():JSX.Element{
                         <Box ml={22} mr={22} bg="#fff" height={60} borderRadius={10} mt={15} mb={20} justifyContent="center">
                             
                                 <HStack alignItems="center" justifyContent="space-between" ml={22} mr={22}>
-                                    <Text fontWeight={"$bold"} fontSize={20} color="#000"> Favoritos</Text>
+                                    <Text fontWeight={"$bold"} fontSize={20} color="#000" accessible accessibilityLabel="Favoritos, botão"> Favoritos</Text>
                                     <Icon as={ChevronRight} color="#000" size="xl"/>
                                 </HStack>
                         </Box>
@@ -52,7 +52,7 @@ function Home():JSX.Element{
                             
                         <TouchableOpacity onPress={() => navigation.navigate('Store' as never)}>
                             <HStack justifyContent="space-between" alignItems="center" ml={22} mr={22} mt={20} mb={20}>
-                                <Text fontWeight={"$extrabold"} fontSize={25} color="#000">Loja</Text>
+                                <Text fontWeight={"$extrabold"} fontSize={25} color="#000" accessible accessibilityLabel="Loja, botão">Loja</Text>
                                 <Icon as={ChevronRight} color="#000" size="xl"/>
                             </HStack>
                         </TouchableOpacity>
@@ -65,7 +65,7 @@ function Home():JSX.Element{
                             
                         <TouchableOpacity onPress={() => navigation.navigate('Coffe' as never)}>
                             <HStack justifyContent="space-between" alignItems="center" ml={22} mr={22} mt={20} mb={20}>
-                                <Text fontWeight={"$extrabold"} fontSize={25} color="#000">Cantina</Text>
+                                <Text fontWeight={"$extrabold"} fontSize={25} color="#000" accessible accessibilityLabel="Catina botão, botão">Cantina</Text>
                                 <Icon as={ChevronRight} color="#000" size="xl"/>
                             </HStack>
                         </TouchableOpacity>
