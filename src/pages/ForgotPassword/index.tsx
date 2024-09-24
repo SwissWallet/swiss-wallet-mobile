@@ -67,17 +67,19 @@ function ForgotPassword():JSX.Element{
 
     async function handleChangePassowrd() {
         if (newPassword === '' || code === '') return Alert.alert('Campos vazios', "Os campos devem ser preenchidos");
-        
+        setLoading(true);
         const response = await api.put('users/recover-password', {
             username: email,
             newPassword: newPassword,
             verificationCode: code
         })
         .then((json) => {
+            setLoading(false);
             navigation.goBack();
             return Alert.alert("Senha alterada", "Senha atualizada com sucesso");
         })
         .catch((err) => {
+            setLoading(false);
             if (err.response.status === 400) {
                 return Alert.alert("Código", "O código informado está inválido");
             }

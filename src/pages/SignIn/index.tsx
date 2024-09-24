@@ -68,6 +68,7 @@ function SignIn(): JSX.Element {
             try {    
                 await AsyncStorage.setItem('@token', json.data.token);
                 
+                dispatch(loading(true));
                 loadStorage();
            
             } catch (error) {
