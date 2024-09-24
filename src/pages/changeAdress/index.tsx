@@ -39,11 +39,17 @@ function ChangeAdress():JSX.Element{
             setLogradouro(json.logradouro);
             setUf(json.uf);
             setLoading(false);
-        });
+        })
+        .catch(err => console.log(err));4
     }
 
     useEffect(() => {
-        if (cep.length === 8) handleLocation(cep);
+        if (cep.length >= 8) {
+            setCep(cep.slice(0,8));
+        }
+        if (cep.length === 8) {
+            handleLocation(cep)
+        }
     }, [cep]);
 
 
@@ -54,6 +60,7 @@ function ChangeAdress():JSX.Element{
         } else if(cep.length < 8 || cep.length > 8){
             return Alert.alert("O cep deve ter 8 digitos")
         } else{
+            setLoading(true);
             registerNewAdress();
         }
     
@@ -71,16 +78,18 @@ function ChangeAdress():JSX.Element{
         .then((json) => {
             console.log(json.data);
             updateAddress();
+            setLoading(false);
             return Alert.alert("Endereço alterado com sucesso!")
 
         }).catch((error) =>{
-
+            setLoading(false);
             console.log(error);
             return Alert.alert("Algo inesperado aconteceu!")
 
         })
     }
 
+    // atualiza o contexto global, para quando o endereço atualizar, o dado ser atualizado para o usuário também
     async function updateAddress() {
         const response = await api.get('users/current')
         .then((json) => {
@@ -99,37 +108,37 @@ function ChangeAdress():JSX.Element{
                     
                 <Title name="Alterar endereço"></Title>
 
-                <Box>
+                <Box ml={22} mr={22}>
 
-                    <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={20}>CEP</Text>
-                    <Input   mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
-                        <InputField color="#000" fontWeight="bold" onChangeText={(text) => setCep(text)} value={cep}/>
+                    <Text fontWeight="$bold" color="#000" fontSize={17} mt={20}>CEP</Text>
+                    <Input   mt={7}  bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" >
+                        <InputField color="#000" fontWeight="bold" onChangeText={(text) => setCep(text)} value={cep} keyboardType="numeric"/>
                     </Input>    
 
-                    <HStack alignItems="center" >
+                    <HStack alignItems="center" justifyContent="space-between">
                         <Box>
-                            <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={30}>Cidade</Text>
-                            <Input isDisabled mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={180}>
+                            <Text fontWeight="$bold" color="#000" fontSize={17} mt={30}>Cidade</Text>
+                            <Input isDisabled mt={7}  bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={180}>
                                     <InputField color="#000" fontWeight="bold" value={city} />
                             </Input>
                         </Box>
 
                         <Box>
-                            <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={30}>UF</Text>
-                            <Input  isDisabled mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={150}>
+                            <Text fontWeight="$bold" color="#000" fontSize={17}   mt={30}>UF</Text>
+                            <Input  isDisabled mt={7}   bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={150}>
                                     <InputField color="#000" fontWeight="bold" value={uf}/>
                             </Input>
                         </Box>
                     </HStack>
 
 
-                    <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={20}>Logradouro</Text>
-                    <Input isDisabled mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
+                    <Text fontWeight="$bold" color="#000" fontSize={17}  mt={20}>Logradouro</Text>
+                    <Input isDisabled mt={7}  bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
                             <InputField color="#000" fontWeight="bold" value={logradouro} />
                     </Input>
 
-                    <Text fontWeight="$bold" color="#000" fontSize={17}  marginLeft={30} mt={20}>Número</Text>
-                    <Input mt={7}  marginLeft={30} bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
+                    <Text fontWeight="$bold" color="#000" fontSize={17}  mt={20}>Número</Text>
+                    <Input mt={7}  bgColor="#C6C6C6" opacity={0.36} borderRadius={8} height={42} $focus-borderColor="#C6C6C6" width={365}>
                             <InputField color="#000" fontWeight="bold" onChangeText={(text) => setNumber(text)} value={number}/>
                     </Input>
                 
@@ -138,7 +147,7 @@ function ChangeAdress():JSX.Element{
                 <Box>
                     <TouchableOpacity onPress={validationInputs}>
                         <DropShadow style={{shadowColor: '#000', shadowOffset: {width: 4, height: 5}, shadowRadius: 2, shadowOpacity: 0.5}}>
-                            <Box ml={22} mr={22} bgColor="#9A1915" mt={45} alignItems="center" justifyContent="center" height={45} borderRadius={10} width={365}>
+                            <Box ml={22} mr={22} bgColor="#9A1915" mt={45} alignItems="center" justifyContent="center" height={45} borderRadius={10} >
                                 <Text color="#fff" fontWeight="$bold" accessible accessibilityLabel="Confirmar, botão">Confirmar</Text>
                             </Box> 
                         </DropShadow>
