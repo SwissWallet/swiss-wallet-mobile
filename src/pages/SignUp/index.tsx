@@ -66,6 +66,7 @@ function SignUp(): JSX.Element {
             return Alert.alert("O ano de nascimento não deve ser igual ao atual")
         }
         else {
+            setLoading(true);
             register();
         }
             
@@ -92,6 +93,7 @@ function SignUp(): JSX.Element {
         .then((json) => {
             console.log(json.status);
             if (json.status === 201) {
+                setLoading(false);
                 Alert.alert('Cadastro realizado');
                 navigation.navigate('SignIn');
             }
@@ -99,6 +101,7 @@ function SignUp(): JSX.Element {
         .catch((err) => {
             console.log(err.response.status);
             console.log(err.reponse.errors);
+            setLoading(false);
             if(err.response.status === 409) {
                 return Alert.alert('Cadastro não realizado', 'usuário já existente');
             }
