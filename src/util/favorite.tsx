@@ -6,15 +6,16 @@ type props = {
 
 async function favorite({id}:props):Promise<string>{
 
-    let messageResponse:string;
+    let messageResponse:string = '';
     
     const response = await api.post(`favorites?idProduct=${id}`)
     .then((json) => {
         messageResponse = 'Produto favoritado'
     })
     .catch(err => {
-        console.log(err)
-        messageResponse = 'Produto não favoritado, algo deu errado';
+        console.log(err.response.status);
+        if (err.response.status == 409) messageResponse = 'O Produto selecionado já está favoritado';
+        else messageResponse = 'Produto não favoritado, algo deu errado';
     })
     .finally(() => {
         
@@ -22,7 +23,7 @@ async function favorite({id}:props):Promise<string>{
 
     });
 
-    return '';
+    return messageResponse;
 }
 
 module.exports = favorite;
