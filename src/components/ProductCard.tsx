@@ -3,11 +3,16 @@ import { Box, HStack, Icon, Image, Text, View } from "@gluestack-ui/themed"
 import { Heart } from "lucide-react-native"
 import api from "../service/api"
 import { useEffect, useState } from "react"
-import { ActivityIndicator, TouchableOpacity } from "react-native"
+import { ActivityIndicator, Alert, TouchableOpacity } from "react-native"
 const favorite = require('../util/favorite');
 
 interface PropsProductCard{
  categoria : string
+}
+
+async function favoriteProdut(id:string) {
+    const response = await favorite({id: id});
+    Alert.alert(`Favoritos`, `${response}`);
 }
 
 function ProductCard({categoria}: PropsProductCard):JSX.Element{
@@ -20,7 +25,6 @@ function ProductCard({categoria}: PropsProductCard):JSX.Element{
         .then((json) => {
             setProducts(json.data);
             setLoading(false);
-            console.log(products);
         })
         .catch((error) => {
             console.log(error);
@@ -58,7 +62,7 @@ function ProductCard({categoria}: PropsProductCard):JSX.Element{
                                 <Text color="$white" fontSize={17} mt={5}>{products[0].value} Pontos</Text>
                             </Box>
 
-                            <TouchableOpacity onPress={() => favorite({id: products[0].id})}>
+                            <TouchableOpacity onPress={() => favoriteProdut(products[0].id)}>
                                 <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
                                     <Icon as={Heart}  color="#fff" size="xl" accessible accessibilityLabel="Icone coração, favoritar, botão"/>
                                 </Box>

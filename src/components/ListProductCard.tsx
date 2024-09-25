@@ -10,8 +10,9 @@ interface PropsProductCard{
  categoria : string
 }
 
-function favoriteProdut(id:string) {
-    favorite({id: id});
+async function favoriteProdut(id:string) {
+    const response = await favorite({id: id});
+    Alert.alert(`Produto`, `${response}`);
 }
 
 function ListProductCard({categoria}: PropsProductCard):JSX.Element{
