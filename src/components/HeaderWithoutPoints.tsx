@@ -10,6 +10,7 @@ function HeaderWithoutPoints():JSX.Element{
 
     const navigate = useNavigation();
     const user = useSelector((state:any) => state.user.value);
+    const name = user.user.name.split(' ')
     
     return(
         <LinearGradient colors={['#E30513', '#9A1915']}>
@@ -51,7 +52,7 @@ function HeaderWithoutPoints():JSX.Element{
                             <Box alignItems="flex-start" flexDirection="column">
 
                                 <Text color="$white">
-                                        Olá {user.user.name}
+                                        Olá {name[0] + " " + name[1]}
                                 </Text>
 
                                 <Text color="$white">
