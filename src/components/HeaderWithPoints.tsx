@@ -42,7 +42,7 @@ function HeaderWithPoints():JSX.Element {
                             </TouchableOpacity>
 
                             <Text color="#fff" ml={6}>
-                                Olá {name[0] + " " + name[1]}
+                                Olá {name[0] + (name[1] ? " " + name[1] : "")}
                             </Text>
                                 
                         </Box>
