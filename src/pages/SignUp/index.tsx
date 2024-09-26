@@ -26,10 +26,6 @@ function SignUp(): JSX.Element {
     const [confirmarSenha, setConfirmarSenha] = useState(''); 
     const [cpf, setCpf] = useState('');
     const [loading, setLoading] = useState(false);
-    const birthDate = dataNascimento;
-    const age = String(new Date().getFullYear() - birthDate[2]); 
-
-    moment().format("dd/MM/yyyy HH-mm");
     
     const handleState = () => {
         setShowPassword(!showPassword);
@@ -77,7 +73,6 @@ function SignUp(): JSX.Element {
         else if(data.isAfter(idadeMinima)){
             return Alert.alert("A pessoa deve ter pelo menos 14 anos")
         }
-
         else {
             setLoading(true);
             register();
@@ -112,9 +107,8 @@ function SignUp(): JSX.Element {
             }
         })
         .catch((err) => {
-            console.log(err.response.status);
-            console.log(err.reponse.errors);
             setLoading(false);
+            console.log(err.response.status);
             if(err.response.status === 409) {
                 return Alert.alert('Cadastro não realizado', 'usuário já existente');
             }
