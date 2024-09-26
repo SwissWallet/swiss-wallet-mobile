@@ -52,7 +52,7 @@ function HeaderWithoutPoints():JSX.Element{
                             <Box alignItems="flex-start" flexDirection="column">
 
                                 <Text color="$white">
-                                        Olá {name[0] + " " + name[1]}
+                                        Olá {name[0] + (name[1] ? " " + name[1] : "")}
                                 </Text>
 
                                 <Text color="$white">
