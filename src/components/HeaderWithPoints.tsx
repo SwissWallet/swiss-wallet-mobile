@@ -9,11 +9,16 @@ import { useSelector } from "react-redux";
 
 function HeaderWithPoints():JSX.Element {
 
+    
+    
+    
     const navigation = useNavigation();
-
+    
     const [visible, setVisible] = useState('****');
     
     const user = useSelector((state:any) => state.user.value);
+    const name = user.user.name.split(' ')
+   
     
     const [pointsCurrently, setPointsCurrently] = useState(user.account.value); 
     
@@ -37,7 +42,7 @@ function HeaderWithPoints():JSX.Element {
                             </TouchableOpacity>
 
                             <Text color="#fff" ml={6}>
-                                Olá {user.user.name}
+                                Olá {name[0] + " " + name[1]}
                             </Text>
                                 
                         </Box>
