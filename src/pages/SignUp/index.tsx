@@ -65,6 +65,12 @@ function SignUp(): JSX.Element {
         else if (String(birthDate[2]) == String(new Date().getFullYear())) {
             return Alert.alert("O ano de nascimento não deve ser igual ao atual")
         }
+        else if ( String(birthDate[1]) > 12 || birthDate[1] <= 0  ){
+            return Alert.alert("Insira um mês válido na sua data de nascimento")
+        }
+        else if ( String(birthDate[0]) > 31 || birthDate[0] <= 0 ){
+            return Alert.alert("Insira um dia válido na sua data de nascimento")
+        }
         else {
             setLoading(true);
             register();
