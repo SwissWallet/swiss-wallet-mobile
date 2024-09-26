@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Keyboard, Modal, ScrollView, TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import { cpf as validator} from "cpf-cnpj-validator";
 import api from "../../service/api";
+import moment = require("moment");
 
 function SignUp(): JSX.Element {
 
@@ -25,8 +26,10 @@ function SignUp(): JSX.Element {
     const [confirmarSenha, setConfirmarSenha] = useState(''); 
     const [cpf, setCpf] = useState('');
     const [loading, setLoading] = useState(false);
-    const birthDate = dataNascimento.split('/');
+    const birthDate = dataNascimento;
     const age = String(new Date().getFullYear() - birthDate[2]); 
+
+    moment().format("dd/MM/yyyy HH-mm");
     
     const handleState = () => {
         setShowPassword(!showPassword);
@@ -50,6 +53,12 @@ function SignUp(): JSX.Element {
     }, [cep]);
 
     const handleRegister = () => {
+
+        const DataFormat= 'DD/MM/YYYY';
+        const data = moment(dataNascimento, DataFormat, true);
+        const idadeMinima = moment().subtract(14, 'years');
+
+
         if (nome === '' || dataNascimento === '' || email === '' || cpf === '' || telefone === '' || cep === '' || localidade === '' || uf === '' || logradouro === '' || numero === '' || senha === '' || confirmarSenha === '') {
             return Alert.alert('Todos os camopos devem ser preenchidos');
         }
@@ -62,9 +71,13 @@ function SignUp(): JSX.Element {
         else if (!validator.isValid(cpf)) {
             return Alert.alert('Insira um cpf válido');
         }
-        else if (String(birthDate[2]) == String(new Date().getFullYear())) {
-            return Alert.alert("O ano de nascimento não deve ser igual ao atual")
+        else if(!data.isValid() || data.isAfter(moment())){
+            return Alert.alert("Insira uma data valida")
         }
+        else if(data.isAfter(idadeMinima)){
+            return Alert.alert("A pessoa deve ter pelo menos 14 anos")
+        }
+
         else {
             setLoading(true);
             register();
