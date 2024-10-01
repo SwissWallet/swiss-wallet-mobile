@@ -62,7 +62,7 @@ type props = {
 function BoxItem({item, categoria}:props):JSX.Element {
     
     function confirmOrder() {
-        Alert.alert('Confirmar Pedido', 'Deseja confirmar o pedido?', [
+        Alert.alert('Confirmar Pedido', 'Deseja adicionar o pedido no carrinho?', [
             {text: 'Sim', onPress: () => {
                 makeOrder(item.id)
             }},
@@ -74,7 +74,7 @@ function BoxItem({item, categoria}:props):JSX.Element {
     async function makeOrder(id:string) {
         const response = await api.post(`orders?idProduct=${item.id}`)
         .then(() => {
-            return Alert.alert('Pedido Realizado com sucesso')
+            return Alert.alert('Pedido adicionado com sucesso')
         })
         .catch(err => console.log(err));
     }

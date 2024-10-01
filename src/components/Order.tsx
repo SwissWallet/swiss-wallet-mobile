@@ -1,11 +1,14 @@
 //@ts-nocheck
 import { Box, HStack, Icon, Image, Text, View } from "@gluestack-ui/themed";
 import { Trash } from "lucide-react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Alert, TouchableOpacity } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import api from "../service/api";
 import { useNavigation } from "@react-navigation/native";
+import CheckBox from "@react-native-community/checkbox";
+import { useDispatch, useSelector } from "react-redux";
+import { addPoints, removePoints } from "../redux/reducers/pointsProduct";
 
 type props = {
     order:Object
@@ -15,29 +18,13 @@ function Order({order}:props):JSX.Element {
     
     const navigation = useNavigation();
 
-    let color;
-    let status;
+    const [active, setActive] = useState(false);
+    const list:any[] = useSelector((state:any) => state.points.value);
+    const dispatch = useDispatch();
     
-    if (order.status === 'COMPLETED') {
-        color = '#848484'
-        status = 'Finalizado'
-    }
-    else if (order.status === 'SEPARATED') {
-        color = '#006d12'
-        status = 'Pronto para retirada'
-    }
-    else if (order.status === 'ANALYSIS') {
-        color = '#FFFF1B'
-        status = 'Em análise'
-    }
-    else {
-        color = 'red'
-        status = 'Não disposnível'
-    }
-
     function confirmDeleteOrder() {
         
-        Alert.alert('Cancelar Pedido', 'Deseja cancelar o pedido?', 
+        Alert.alert('Cancelar Pedido', 'Deseja remover o pedido do carrinho?', 
             [
                 {
                     text: 'Confirmar', onPress: () => {
@@ -49,44 +36,57 @@ function Order({order}:props):JSX.Element {
                 }
         ]);
     }
+
+    useEffect(() => {
+        list.map((item) => {
+            if (item.id == order.product.id) setActive(true);
+        })
+    }, []);
     
     async function deleteOrder() {
         const response = await api.delete(`orders?idOrder=${order.id}`)
         .then(() => {
-            Alert.alert('Pedido', 'Pedido Cancelado');
+            Alert.alert('Pedido', 'Pedido removido do carrinho');
+            dispatch(removePoints(order.product.id));
             navigation.replace('HomeTab', {screen: 'Shopping'})
         })
         .catch(err => console.log(err));
     }
 
-
     return(
         <Box ml={22} mr={22} bg="#fff" borderRadius={10} mb={20} mt={5}>
             <Box>
-                <Box justifyContent="center" alignItems="center">
-                    <Image source={(`data:image/jpeg;base64,${order.product.image}`)} alt={order.product.name} width={250} height={330} mt={20}/> 
-                </Box>
-                
-                <Box bgColor="#c6c6c6a7" pl={22} pr={22} pt={10} pb={10}>
+                <Box flexDirection="row">
+                    <HStack alignItems="center" space="lg" m={10}>
+                        <CheckBox value={active} onValueChange={setActive} onTouchEndCapture={() => {
+                                if (!active) {
+                                    dispatch(addPoints(order.product.id, order.product.value))
+                                }
+                                else {
+                                    dispatch(removePoints(order.product.id))
+                                }
+                            }}
+                        />
+                        <Image source={(`data:image/jpeg;base64,${order.product.image}`)} alt={order.product.name} width={65} height={85}/> 
+                    </HStack>
                     
-                    <HStack justifyContent="space-between" alignItems="center" mb={5}>
-                        <Text color="#000" fontWeight={"$bold"} fontSize={25}>
+                    <Box>
+                        <Text color="#000" fontWeight={'$bold'} fontSize={20} mt={20}>
                             {order.product.name}
                         </Text>
-                        <TouchableOpacity onPress={confirmDeleteOrder}>
-                            <Box bgColor="#C40601" borderRadius={20} width={40} height={40} justifyContent="center" alignItems="center">
-                                <Icon as={Trash} color="#fff" size="xl" accessible accessibilityLabel="Icone, cancelar pedido ,botão"/>
-                            </Box>
-                        </TouchableOpacity>
-                    </HStack>
-                    
-                    <HStack space="md">
-                        <Box bgColor={color} width={22} height={22} borderRadius={50}/>
-                        <Text color="#000" fontWeight="bold" fontSize={17}>
-                            {status}
-                        </Text>
-                    </HStack>
-                </Box>         
+                        <Text color="#000" fontWeight={'$bold'} fontSize={16}> 
+                            {order.product.value} Pontos
+                        </Text>    
+                    </Box>
+                </Box>
+
+                <Box justifyContent="flex-end" alignItems="flex-end" mt={-30} mr={10} mb={10}>
+                    <TouchableOpacity onPress={confirmDeleteOrder}>
+                        <Box bgColor="#C40601" borderRadius={20} width={35} height={35} justifyContent="center" alignItems="center">
+                            <Icon as={Trash} color="#fff" size="md" accessible accessibilityLabel="Icone, cancelar pedido ,botão"/>
+                        </Box>
+                    </TouchableOpacity>
+                </Box>
             </Box>
         </Box>
     );
