@@ -14,6 +14,7 @@
     "@gluestack-ui/config": "latest",
     "@gluestack-ui/themed": "^1.1.44",
     "@react-native-async-storage/async-storage": "^1.24.0",
+    "@react-native-community/checkbox": "^0.5.17",
     "@react-navigation/bottom-tabs": "^6.6.1",
     "@react-navigation/native": "^6.1.18",
     "@react-navigation/native-stack": "^6.11.0",
