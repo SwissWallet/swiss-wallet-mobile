@@ -1,19 +1,34 @@
-import React from "react";
-import { Box, HStack, Icon, Text, View } from "@gluestack-ui/themed";
+import React, { useEffect, useState } from "react";
+import { Box, HStack, Icon, RefreshControl, Text, View } from "@gluestack-ui/themed";
 import HeaderWithPoints from "../../components/HeaderWithPoints";
-import { ScrollView, TouchableOpacity } from "react-native";
+import { ActivityIndicator, Modal, ScrollView, TouchableOpacity } from "react-native";
 import DropShadow from "react-native-drop-shadow";
 import { ChevronRight, Heart } from "lucide-react-native";
 import ProductCard from "../../components/ProductCard";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import reloadApp from "../../util/ReloadApp";
 
 function Home():JSX.Element{
 
     const navigation = useNavigation();
 
-    return(
+    const dispatch = useDispatch();
+    
+    const reload = useSelector((state:any) => state.reload.value);
 
-        <ScrollView showsVerticalScrollIndicator={false}>
+    if (reload) {
+        return (
+            <View>
+                <HeaderWithPoints/>
+            </View>
+        );
+    }
+
+    return(
+        <ScrollView showsVerticalScrollIndicator={false} refreshControl={
+            <RefreshControl onRefresh={() => reloadApp(dispatch)} refreshing={reload}/>
+        }>
             <View>
                 <HeaderWithPoints/>
 
