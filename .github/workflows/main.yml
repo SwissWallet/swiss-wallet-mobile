@@ -1,0 +1,36 @@
+name: Build APK 
+on:
+  push: 
+    branches: 
+    - master
+    - qas
+
+jobs: 
+  build:
+    name: build
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: Checkout 
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'  
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build APK
+      run: |
+        cd android
+        ./gradlew assembleRelease
+
+    - name: Upload Build Artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-release-artifacts
+        path: android/app/build/outputs/apk/release/swisswallet.apk
+
+  
