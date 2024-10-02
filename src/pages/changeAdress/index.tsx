@@ -40,7 +40,10 @@ function ChangeAdress(): JSX.Element {
                 setUf(json.uf);
                 setLoading(false);
             })
-            .catch(err => console.log(err)); 4
+            .catch(err => {
+                setLoading(false);
+                console.log(err)
+            }); 
     }
 
     useEffect(() => {
