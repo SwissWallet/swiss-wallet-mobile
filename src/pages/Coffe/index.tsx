@@ -1,13 +1,29 @@
 import React from "react";
-import { Box, Text, View } from "@gluestack-ui/themed";
+import { Box, RefreshControl, Text, View } from "@gluestack-ui/themed";
 import HeaderWithPoints from "../../components/HeaderWithPoints";
 import DropShadow from "react-native-drop-shadow";
 import ListProductCard from "../../components/ListProductCard";
 import { ScrollView } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
+import reloadApp from "../../util/ReloadApp";
 
 function Coffe():JSX.Element{
+    const reload = useSelector((state:any) => state.reload.value);
+
+    const dispatch = useDispatch();
+
+    if (reload) {
+        return (
+            <View>
+                <HeaderWithPoints/>
+            </View>
+        );
+    }
+
     return(
-        <ScrollView showsVerticalScrollIndicator={false}>
+        <ScrollView showsVerticalScrollIndicator={false} refreshControl={
+            <RefreshControl onRefresh={() => reloadApp(dispatch)} refreshing={reload}/>
+        }>
             <View>
                 <HeaderWithPoints/>
                 <Box mb={-50} ml={22} mt={45}>
