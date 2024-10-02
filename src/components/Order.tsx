@@ -58,7 +58,7 @@ function Order({order}:props):JSX.Element {
             <Box>
                 <Box flexDirection="row">
                     <HStack alignItems="center" space="lg" m={10}>
-                        <CheckBox value={active} onValueChange={setActive} onTouchEndCapture={() => {
+                        <CheckBox accessible accessibilityLabel="Caixa checkbox" value={active} onValueChange={setActive} onTouchEndCapture={() => {
                                 if (!active) {
                                     dispatch(addPoints(order.product.id, order.product.value))
                                 }

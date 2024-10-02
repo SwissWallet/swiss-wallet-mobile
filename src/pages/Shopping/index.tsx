@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Box, FlatList, HStack, ScrollView, Text, View } from "@gluestack-ui/themed";
+import { Box, FlatList, HStack, RefreshControl, ScrollView, Text, View } from "@gluestack-ui/themed";
 import HeaderWithPoints from "../../components/HeaderWithPoints";
 import Titlle from "../../components/Title";
 import api from "../../service/api";
 import DropShadow from "react-native-drop-shadow";
 import Order from "../../components/Order";
-import { ActivityIndicator, Alert, TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { clearList } from "../../redux/reducers/pointsProduct";
+import reloadApp from "../../util/ReloadApp";
 
 function Shopping(): JSX.Element {
 
@@ -19,6 +20,7 @@ function Shopping(): JSX.Element {
     const [productIds, setProductIds] = useState([]);
     const [valuePoints, setValuePoints] = useState(0);
     const dispatch = useDispatch();
+    const reload = useSelector((state:any) => state.reload.value);
 
     useEffect(() => {
         loadOrders();
@@ -111,16 +113,19 @@ function Shopping(): JSX.Element {
         .catch(err => console.log(err));
     }
 
-    if (loading) {
+    if (loading || reload) {
         return (
-            <View justifyContent="center" alignItems="center" flex={1}>
-                <ActivityIndicator color="#000" size="large" />
+            <View>
+                <HeaderWithPoints />
             </View>
         )
     }
 
     return (
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ flexGrow: 1 }}
+            refreshControl={
+                <RefreshControl onRefresh={() => reloadApp(dispatch)} refreshing={reload}/>
+            }>
             <View flex={1}>
                 <HeaderWithPoints />
                 <Titlle name="Carrinho" />
@@ -144,9 +149,9 @@ function Shopping(): JSX.Element {
                             </Text>
                         </Box>
 
-                        <TouchableOpacity style={{width: '100%'}} onPress={() => handleAlert()}>
+                        <TouchableOpacity style={{width: '100%'}} onPress={() => handleAlert()} accessible accessibilityLabel="Finalizar compra ,botão">
                             <Box bgColor="#ffffff" w={'50%'} h={50} justifyContent="center" alignItems="center">
-                                <Text color="#000" fontWeight={'$bold'}>
+                                <Text color="#000" fontWeight={'$bold'} >
                                     Finalizar compra
                                 </Text>
                             </Box>
