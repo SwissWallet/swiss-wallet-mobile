@@ -30,7 +30,10 @@ jobs:
 
     - name: Make gradlew executable
       run: chmod +x android/gradlew  
-
+      
+    - name: Create keystore
+      run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > android/app/my-upload-key.keystore
+        
     - name: Build APK
       run: |
         cd android
