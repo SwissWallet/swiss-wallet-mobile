@@ -1,6 +1,7 @@
 import HeaderWithPoints from "../../components/HeaderWithPoints";
 import { useNavigation } from "@react-navigation/native";
-import { ScrollView, View } from "@gluestack-ui/themed";
+import { ScrollView, Text, View } from "@gluestack-ui/themed";
+import Titlle from "../../components/Title";
 
 function MyPurchase(): JSX.Element{
 
@@ -17,6 +18,8 @@ function MyPurchase(): JSX.Element{
 
                 <HeaderWithPoints/>
 
+                <Titlle name="Minhas Compras"></Titlle>
+                
                 
 
             </View>
