@@ -6,7 +6,7 @@ type GetProps = {
 
 function Titlle(props: GetProps){
     return(
-        <View ml={25} mt={65}>
+        <View ml={25} mt={65} mr={80}>
             <Heading color="#000" fontWeight="$bold" fontSize={32} mb={5}>
                 {props.name}
             </Heading>

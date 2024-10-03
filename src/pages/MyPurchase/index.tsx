@@ -1,7 +1,6 @@
-import { ScrollView } from "react-native";
 import HeaderWithPoints from "../../components/HeaderWithPoints";
 import { useNavigation } from "@react-navigation/native";
-import { View } from "@gluestack-ui/themed";
+import { ScrollView, View } from "@gluestack-ui/themed";
 
 function MyPurchase(): JSX.Element{
 
@@ -13,7 +12,7 @@ function MyPurchase(): JSX.Element{
 
 
     return(
-        <ScrollView>
+        <ScrollView flex={1}>
             <View flex={1}>
 
                 <HeaderWithPoints/>

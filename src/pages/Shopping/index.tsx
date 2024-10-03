@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Box, FlatList, HStack, RefreshControl, ScrollView, Text, View } from "@gluestack-ui/themed";
+import { Box, FlatList, HStack, Icon, Image, RefreshControl, ScrollView, Text, View } from "@gluestack-ui/themed";
 import HeaderWithPoints from "../../components/HeaderWithPoints";
 import Titlle from "../../components/Title";
 import api from "../../service/api";
 import DropShadow from "react-native-drop-shadow";
 import Order from "../../components/Order";
 import { Alert, TouchableOpacity } from "react-native";
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { clearList } from "../../redux/reducers/pointsProduct";
 import reloadApp from "../../util/ReloadApp";
+import { ArrowRightCircle } from "lucide-react-native";
 
 function Shopping(): JSX.Element {
 
@@ -21,6 +22,7 @@ function Shopping(): JSX.Element {
     const [valuePoints, setValuePoints] = useState(0);
     const dispatch = useDispatch();
     const reload = useSelector((state:any) => state.reload.value);
+    const navigate = useNavigation();
 
     useEffect(() => {
         loadOrders();
@@ -128,7 +130,19 @@ function Shopping(): JSX.Element {
             }>
             <View flex={1}>
                 <HeaderWithPoints />
-                <Titlle name="Carrinho" />
+
+                <HStack>
+
+                    <Titlle name="Carrinho" />
+
+                    <TouchableOpacity onPress={() => navigate.navigate('MyPurchase' as never)} >
+                        <Box flexDirection="row" mt={65}>
+                            <Text color="#000">Minhas compras   </Text>
+                            <Icon as={ArrowRightCircle} size="xl" color="#000" accessible accessibilityLabel="Icone seguir para MyPurchase"/>
+                        </Box>
+                    </TouchableOpacity>
+
+                </HStack>
 
                 <DropShadow style={{ shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.5, shadowRadius: 4 }}>
                     <Box mt={10}>
