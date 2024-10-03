@@ -43,6 +43,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: build-release-artifacts
-        path: android/app/build/outputs/apk/release/swisswallet.apk
+        path: android/app/build/outputs/apk/release/app-release.apk
 
   
