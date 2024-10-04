@@ -1,30 +1,51 @@
 import HeaderWithPoints from "../../components/HeaderWithPoints";
 import { useNavigation } from "@react-navigation/native";
-import { ScrollView, Text, View } from "@gluestack-ui/themed";
+import { FlatList, ScrollView, Text, View } from "@gluestack-ui/themed";
 import Titlle from "../../components/Title";
 import DropBox from "../../components/DropsBoxPurchase";
+import api from "../../service/api";
+import { useEffect, useState } from "react";
 
 function MyPurchase(): JSX.Element{
 
     const navigation = useNavigation();
+    const [products, setProducts] = useState();
 
 
 
+    async function teste(){
 
+        const response = await api.get('order/carts/current')
+        .then((json) => {
+            // console.log(json.data[0]);
+            setProducts(json.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
 
+    useEffect(() =>{
+        teste();
+    }, [])
 
     return(
-        <ScrollView flex={1}>
+        
             <View flex={1}>
 
                 <HeaderWithPoints/>
 
                 <Titlle name="Minhas Compras"></Titlle>
                 
-                <DropBox></DropBox>
+                <FlatList 
+                    data={products}
+                    keyExtractor={(item:any) => item.id}
+                    renderItem={(item:any) => <DropBox purchase={item}/>}
+                />
+
 
             </View>
-        </ScrollView>
+
 
     )
 }
