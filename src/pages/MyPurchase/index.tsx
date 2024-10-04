@@ -2,6 +2,7 @@ import HeaderWithPoints from "../../components/HeaderWithPoints";
 import { useNavigation } from "@react-navigation/native";
 import { ScrollView, Text, View } from "@gluestack-ui/themed";
 import Titlle from "../../components/Title";
+import DropBox from "../../components/DropsBoxPurchase";
 
 function MyPurchase(): JSX.Element{
 
@@ -20,7 +21,7 @@ function MyPurchase(): JSX.Element{
 
                 <Titlle name="Minhas Compras"></Titlle>
                 
-                
+                <DropBox></DropBox>
 
             </View>
         </ScrollView>
