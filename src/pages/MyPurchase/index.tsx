@@ -31,6 +31,8 @@ function MyPurchase(): JSX.Element{
 
     return(
         
+        <ScrollView>
+
             <View flex={1}>
 
                 <HeaderWithPoints/>
@@ -41,10 +43,12 @@ function MyPurchase(): JSX.Element{
                     data={products}
                     keyExtractor={(item:any) => item.id}
                     renderItem={(item:any) => <DropBox purchase={item}/>}
-                />
+                    scrollEnabled={false}
+                    />
 
 
             </View>
+        </ScrollView>
 
 
     )
