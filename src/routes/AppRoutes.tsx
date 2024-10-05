@@ -17,6 +17,7 @@ import ChangingPassword from "../pages/ChangingPassword/ChangingPassword";
 import Profile from "../pages/Profile";
 import Extract from "../pages/Extract";
 import Favorite from "../pages/Favorites";
+import MyPurchase from "../pages/MyPurchase"
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -124,6 +125,8 @@ function AppRoutes():JSX.Element {
             <Stack.Screen name="Profile" component={Profile}/>
             <Stack.Screen name="Extract" component={Extract}/>
             <Stack.Screen name="Favorite" component={Favorite} />
+            <Stack.Screen name="MyPurchase" component={MyPurchase} />
+
         </Stack.Navigator>
     )
 }

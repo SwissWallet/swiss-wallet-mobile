@@ -4,9 +4,9 @@ type GetProps = {
     name: string;
   };
 
-function Titlle(props: GetProps){
+function TitleWithoutMargin(props: GetProps){
     return(
-        <View ml={25} mt={65} mr={80}>
+        <View ml={25} paddingTop={20}>
             <Heading color="#000" fontWeight="$bold" fontSize={32} mb={5}>
                 {props.name}
             </Heading>
@@ -14,4 +14,4 @@ function Titlle(props: GetProps){
     )
 }
 
-export default Titlle;
+export default TitleWithoutMargin;
