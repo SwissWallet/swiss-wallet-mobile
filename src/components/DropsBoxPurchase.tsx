@@ -48,8 +48,15 @@ function DropBox({purchase}: props): JSX.Element {
       });
   }
 
-  function cancelar() {
-
+   async function cancelar() {
+		const response = await api.delete(`/order/carts/${purchase.item.id}`)
+		.then(() => {
+			return Alert.alert("Compra cancelada")
+		})
+		.catch((error) => {
+			console.log(error)
+			return Alert.alert("Algo deu errado")
+		})
   }
 
   return (
