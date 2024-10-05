@@ -8,6 +8,7 @@ import ProductCard from "../../components/ProductCard";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import reloadApp from "../../util/ReloadApp";
+import setupNotifications from "../../util/Notifications";
 
 function Home():JSX.Element{
 
@@ -16,6 +17,10 @@ function Home():JSX.Element{
     const dispatch = useDispatch();
     
     const reload = useSelector((state:any) => state.reload.value);
+
+    useEffect(() => {
+        setupNotifications();
+    }, []);
 
     if (reload) {
         return (
