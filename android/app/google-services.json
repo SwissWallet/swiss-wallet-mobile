@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "512089095986",
+    "project_id": "teste-58c16",
+    "storage_bucket": "teste-58c16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512089095986:android:90fdd2919b8c0ebd13612b",
+        "android_client_info": {
+          "package_name": "com.swisswallet"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCark_EwT9FQGpUpB4C3zuZnHVAltMKTGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
