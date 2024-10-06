@@ -135,7 +135,7 @@ function Shopping(): JSX.Element {
 
                     <Titlle name="Carrinho" />
 
-                    <TouchableOpacity onPress={() => navigate.navigate('MyPurchase' as never)} >
+                    <TouchableOpacity onPress={() => navigate.navigate('Purchase' as never)} >
                         <Box flexDirection="row" mt={65}>
                             <Text color="#000">Minhas compras   </Text>
                             <Icon as={ArrowRightCircle} size="xl" color="#000" accessible accessibilityLabel="Icone seguir para MyPurchase"/>

@@ -60,7 +60,7 @@ function DropBox({purchase}: props): JSX.Element {
   }
 
   return (
-    <View>
+    <View mb={15}>
       <Box
         bgColor="#C6C6C6"
         mr={25}

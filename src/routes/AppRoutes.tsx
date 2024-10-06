@@ -100,6 +100,15 @@ function HomeTab() {
                     }
                 }
             />
+
+            <Tab.Screen name="Purchase" component={MyPurchase} 
+                options={
+                    {
+                        tabBarItemStyle: {
+                            display: 'none'
+                        }
+                    }
+            }/>
             
             
         </Tab.Navigator>
