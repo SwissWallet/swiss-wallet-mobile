@@ -11,8 +11,10 @@ const requestUserPermission = async () => {
         console.log('Permissão para notificações concedida!');
     }
     else {
-        console.log('Permissão para notificações concedida!');
+        console.log('Permissão para notificações negada!');
     }
+
+    await notifee.requestPermission();
 };
 
 const getFCMToken = async () => {
