@@ -83,7 +83,7 @@ function Order({order}:props):JSX.Element {
                 <Box justifyContent="flex-end" alignItems="flex-end" mt={-30} mr={10} mb={10}>
                     <TouchableOpacity onPress={confirmDeleteOrder}>
                         <Box bgColor="#C40601" borderRadius={20} width={35} height={35} justifyContent="center" alignItems="center">
-                            <Icon as={Trash} color="#fff" size="md" accessible accessibilityLabel="Icone, cancelar pedido ,botão"/>
+                            <Icon as={Trash} color="#fff" size="md" accessible accessibilityLabel="Cancelar pedido ,botão"/>
                         </Box>
                     </TouchableOpacity>
                 </Box>
