@@ -70,7 +70,7 @@ function DropBox({purchase}: props): JSX.Element {
         borderTopEndRadius={10}
         borderTopStartRadius={10}
         mt={10}>
-        <TouchableOpacity onPress={() => handleProductSelect()}>
+        <TouchableOpacity onPress={() => handleProductSelect()} >
           <HStack alignItems="center" justifyContent="space-between">
             <TitleWithoutMargin
               name={`Carrinho #${purchase.item.id}`}></TitleWithoutMargin>
@@ -79,7 +79,7 @@ function DropBox({purchase}: props): JSX.Element {
               size="xl"
               color="#000"
               accessible
-              accessibilityLabel="Icone abrir compra"
+              accessibilityLabel="Abrir modal de compras"
               mr={25}
               mt={10}
             />
@@ -109,12 +109,12 @@ function DropBox({purchase}: props): JSX.Element {
 
         <HStack justifyContent="space-between" mr={40} ml={40} mt={20} mb={10}>
           <Text>{purchase.item.value} Total</Text>
-          <Text>Status: {purchase.item.status}</Text>
+          <Text>Status: {purchase.item.status == 'PAID' ? 'Pago' : 'Pendente'}</Text>
         </HStack>
 
 		{purchase.item.status == "PENDING" ? 
 			<HStack justifyContent="flex-end" mt={20} mb={10} ml={20} mr={20}>
-			<TouchableOpacity onPress={() => cancelar()}>
+			<TouchableOpacity onPress={() => cancelar()} accessible accessibilityLabel="Cancelar, botão">
 				<Box
 				w={100}
 				h={27}
@@ -127,7 +127,7 @@ function DropBox({purchase}: props): JSX.Element {
 				</Box>
 			</TouchableOpacity>
 
-			<TouchableOpacity onPress={() => payProducts()}>
+			<TouchableOpacity onPress={() => payProducts()} accessible accessibilityLabel="Finalizar, botão">
 				<Box
 				w={100}
 				h={27}

@@ -1,5 +1,5 @@
 import HeaderWithPoints from "../../components/HeaderWithPoints";
-import { Actionsheet, ActionsheetContent, ActionsheetDragIndicatorWrapper, Box, FlatList, HStack, RefreshControl, ScrollView, Text, View } from "@gluestack-ui/themed";
+import { Actionsheet, ActionsheetBackdrop, ActionsheetContent, ActionsheetDragIndicatorWrapper, Box, FlatList, HStack, RefreshControl, ScrollView, Text, View } from "@gluestack-ui/themed";
 import Titlle from "../../components/Title";
 import DropBox from "../../components/DropsBoxPurchase";
 import api from "../../service/api";
@@ -89,11 +89,11 @@ function MyPurchase(): JSX.Element {
 
 
                 <Actionsheet isOpen={openModal} onClose={() => setOpenModal(!openModal)} >
+                    <ActionsheetBackdrop />
                     <ActionsheetContent bgColor="#ffffff">
                         <ActionsheetDragIndicatorWrapper bgColor="#000" width={'$1/2'} borderRadius={5} />
-
                         <Text mt={10} color="#000" fontWeight={'$bold'} fontSize={22}>
-                            Flitro
+                            Filtro
                         </Text>
 
                         <HStack alignItems="center" justifyContent="flex-start" width={'$full'} ml={10}>
