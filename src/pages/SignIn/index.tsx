@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { Button, ButtonText, Divider, HStack, InputField, InputIcon, InputSlot, ScrollView, Text, View } from "@gluestack-ui/themed";
+import { Button, ButtonText, Divider, HStack, InputField, InputIcon, InputSlot, ScrollView, set, Text, View } from "@gluestack-ui/themed";
 import { Box } from '@gluestack-ui/themed';
 import { Input } from '@gluestack-ui/themed';
 import { useNavigation } from "@react-navigation/native";
@@ -14,8 +14,11 @@ import {isLoged} from "../../redux/reducers/userLoged";
 import {user} from "../../redux/reducers/user";
 import { useDispatch } from "react-redux";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import messaging from '@react-native-firebase/messaging';
+import setupNotifications from "../../util/Notifications";
 
 
+let tokenN;
 function SignIn(): JSX.Element {
 
     const navigation = useNavigation();
@@ -60,9 +63,10 @@ function SignIn(): JSX.Element {
     }
 
     async function login() {
-        const response = await api.post('auth', {
+        const response = await api.post('auth/mobile', {
             username: email,
-            password: password
+            password: password,
+            token: tokenN
         })
         .then(async(json) => {
             try {    
@@ -92,8 +96,14 @@ function SignIn(): JSX.Element {
     }
 
     useEffect(() => {
+        setupNotifications();
+        getToken();
         loadStorage();
     }, []);
+
+    async function getToken() {
+        await messaging().getToken().then((json) => tokenN = json);
+    }
 
     async function loadStorage() {
         const token = await AsyncStorage.getItem('@token');
