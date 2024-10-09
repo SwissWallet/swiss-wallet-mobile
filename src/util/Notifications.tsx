@@ -48,6 +48,29 @@ const setupNotifications = () => {
         });
     });
 
+    messaging().setBackgroundMessageHandler(async remoteMessage => {
+        console.log('Mensagem recebida em segundo plano!', remoteMessage);
+    
+        const channelId = await notifee.createChannel({
+            id: 'Lembrete',
+            name: 'Lembrete',
+            vibration: true,
+            importance: AndroidImportance.HIGH,
+        });
+    
+        await notifee.displayNotification({
+            id: remoteMessage.messageId,
+            title: remoteMessage.data?.title,
+            body: remoteMessage.data?.body,
+            android: {
+                channelId,
+                pressAction: {
+                    id: 'default',
+                },
+            },
+        });
+    });
+
 }
 
 export default setupNotifications;
