@@ -8,8 +8,9 @@ import { ActivityIndicator, TouchableOpacity } from "react-native";
 import reloadApp from "../../util/ReloadApp";
 import { useDispatch, useSelector } from "react-redux";
 import CheckBox from "@react-native-community/checkbox";
-import { ListFilter } from "lucide-react-native";
+import { Coins, ListFilter } from "lucide-react-native";
 import DropShadow from "react-native-drop-shadow";
+import BuyPointsModal from "../../components/BuyPoints";
 
 function MyPurchase(): JSX.Element {
 
@@ -19,6 +20,7 @@ function MyPurchase(): JSX.Element {
     const [openModal, setOpenModal] = useState(false);
     const [selectedPaidFilter, setSelectedPaidFilter] = useState(true);
     const [selectedPendingFilter, setSelectedPendingFilter] = useState(false);
+    const [openModalPoints, setOpenModalPoints] = useState(false);
 
     const dispatch = useDispatch();
     const reload = useSelector((state: any) => state.reload.value);
@@ -71,6 +73,12 @@ function MyPurchase(): JSX.Element {
 
                 <HStack>
                     <Titlle name="Minhas Compras" />
+
+                    <TouchableOpacity onPress={() => setOpenModalPoints(!openModalPoints)} accessible accessibilityLabel="Abrir modal, botão">
+                            <Box mt={65} alignItems="center" ml={-30} mr={10}>
+                                <Coins color="#000" size={29} />
+                            </Box>
+                        </TouchableOpacity>
 
                     <TouchableOpacity onPress={() => setOpenModal(!openModal)} accessible accessibilityLabel="Abrir modal, botão">
                         <Box mt={65} alignItems="center">
@@ -127,6 +135,13 @@ function MyPurchase(): JSX.Element {
                                 </Box>
                             </TouchableOpacity>
                         </DropShadow>
+                    </ActionsheetContent>
+                </Actionsheet>
+
+                <Actionsheet isOpen={openModalPoints} onClose={() => setOpenModalPoints(!openModalPoints)}>
+                    <ActionsheetBackdrop />
+                    <ActionsheetContent>
+                        <BuyPointsModal />
                     </ActionsheetContent>
                 </Actionsheet>
 
