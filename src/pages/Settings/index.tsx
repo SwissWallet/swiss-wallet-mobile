@@ -47,7 +47,7 @@ function Settings(): JSX.Element {
         <ScrollView flex={1} showsVerticalScrollIndicator={false}>
             <View>
                 <HeaderWithoutPoints />
-                <Titlle name="Configurações da Conta" />
+                <Titlle name="Configurações" />
 
                 <DropShadow style={{ shadowColor: '#000', shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.5, shadowRadius: 4 }}>
                     <Center mt={20}>
