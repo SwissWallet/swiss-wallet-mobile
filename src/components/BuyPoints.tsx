@@ -17,37 +17,59 @@ import {HelpCircle, InfoIcon} from 'lucide-react-native';
 import {useState} from 'react';
 import {TouchableOpacity} from 'react-native';
 import api from '../service/api';
-import { Alert as AlertReact}  from 'react-native';
+import {Alert as AlertReact} from 'react-native';
 
 function BuyPointsModal(): JSX.Element {
   const [values, setValues] = useState('CREDIT');
   const [isVisible, setIsVisible] = useState('none');
-  const [points, setPoints] = useState("");
+  const [points, setPoints] = useState('');
 
   function handleMessage() {
     setIsVisible(isVisible === 'none' ? 'flex' : 'none');
   }
 
+  async function buyPoints() {
 
-  async function buyPoints(){
-
-    if(points === ""){
-        return AlertReact.alert("Retorne a quantidade de pontos!!")
+    if (points === '') {
+      return AlertReact.alert('Retorne a quantidade de pontos!!');
     }
 
-    const total = points/2;
+    if (values === 'PIX') {
+      return buyPointsPix();
+    }
+    
+    const total = points / 2;
 
-    const response = await api.post("accounts/purchase/points", {
-        "points": points,
-        "value": total,
-        "typePayment": values
-    })
-    .then(() => {
-        AlertReact.alert(`Sua compra de ${points} foi realizada com sucesso!!`)
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+
+    const response = await api
+      .post('accounts/purchase/points', {
+        points: points,
+        value: total,
+        typePayment: values,
+      })
+      .then(() => {
+        AlertReact.alert(`Sua compra de ${points} foi realizada com sucesso!!`);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  async function buyPointsPix() {
+    const total = points / 2;
+
+    const response = await api
+      .post('accounts/purchase/points/pix', {
+        points: points,
+        value: total,
+        typePayment: values,
+      })
+      .then(() => {
+        AlertReact.alert(`Sua compra de ${points} foi realizada com sucesso!!`);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   return (
