@@ -15,14 +15,17 @@ import {
 } from '@gluestack-ui/themed';
 import {HelpCircle, InfoIcon} from 'lucide-react-native';
 import {useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {ActivityIndicator, Linking, Modal, TouchableOpacity} from 'react-native';
 import api from '../service/api';
 import {Alert as AlertReact} from 'react-native';
+import Clipboard from '@react-native-clipboard/clipboard';
+
 
 function BuyPointsModal(): JSX.Element {
   const [values, setValues] = useState('CREDIT');
   const [isVisible, setIsVisible] = useState('none');
   const [points, setPoints] = useState('');
+  const [loading, setLoading] = useState<boolean>(false);
 
   function handleMessage() {
     setIsVisible(isVisible === 'none' ? 'flex' : 'none');
@@ -31,16 +34,17 @@ function BuyPointsModal(): JSX.Element {
   async function buyPoints() {
 
     if (points === '') {
-      return AlertReact.alert('Retorne a quantidade de pontos!!');
+      return AlertReact.alert('Informe a quantidade de pontos!!');
     }
 
     if (values === 'PIX') {
+      setLoading(true);
       return buyPointsPix();
     }
     
     const total = points / 2;
 
-
+    setLoading(true);
     const response = await api
       .post('accounts/purchase/points', {
         points: points,
@@ -48,10 +52,13 @@ function BuyPointsModal(): JSX.Element {
         typePayment: values,
       })
       .then(() => {
-        AlertReact.alert(`Sua compra de ${points} foi realizada com sucesso!!`);
+        setLoading(false);
+        AlertReact.alert(`Sua compra de ${points} pontos foi realizada com sucesso!!`);
       })
       .catch(error => {
-        console.log(error);
+        setLoading(false);
+        if (error.message && values === 'DEBIT') return AlertReact.alert('Erro na compra', 'Débito insuficiente para realizar a compra de pontos');
+        else if (error.message && values === 'CREDIT') return AlertReact.alert('Erro na compra', 'Limite insuficiente para realizar a compra de pontos');
       });
   }
 
@@ -64,13 +71,38 @@ function BuyPointsModal(): JSX.Element {
         value: total,
         typePayment: values,
       })
-      .then(() => {
-        AlertReact.alert(`Sua compra de ${points} foi realizada com sucesso!!`);
+      .then((json) => {
+        setLoading(false);
+        console.log(json.data);
+        Clipboard.setString(json.data);
+        AlertReact.alert('Código Pix gerado', "Código copiado. Clique em OK para abrir o SwissBank e concluir o pagamento.", [
+          {
+            style: 'cancel',
+            text: 'Cancelar'
+          },
+          {
+            text: 'OK',
+            onPress: () => {
+              openSwissBank();
+            }
+          }
+        ]);
       })
       .catch(error => {
+        setLoading(false);
         console.log(error);
       });
   }
+
+  const openSwissBank = async () => {
+    const url = 'meuapp://'; 
+
+    try {
+        Linking.openURL(url);
+    } catch (error) {
+        Alert.alert("Não foi possível abrir o SwissBank.");
+    }
+};
 
   return (
     <KeyboardAvoidingView behavior="position">
@@ -199,6 +231,20 @@ function BuyPointsModal(): JSX.Element {
             </Box>
           </TouchableOpacity>
         </Box>
+        <Modal visible={loading} transparent>
+          <Box flex={1} justifyContent='center'>
+            <ActivityIndicator size='large' color="#000"/>
+            {
+              values === 'PIX' ? (
+                <Text alignSelf='center'>
+                  Gerando código pix
+                </Text>
+                ) : (
+                  ''
+                )
+            }
+          </Box>
+        </Modal>
       </View>
     </KeyboardAvoidingView>
   );
