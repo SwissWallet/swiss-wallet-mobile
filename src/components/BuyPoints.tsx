@@ -184,7 +184,7 @@ function BuyPointsModal(): JSX.Element {
               <RadioIndicator
                 mr="$2"
                 width={values === 'CREDIT' ? 100 : 75}
-                height={values === 'credit' ? 40 : 33}
+                height={values === 'CREDIT' ? 40 : 33}
                 borderRadius={5}
                 bgColor={values === 'CREDIT' ? '#C40601' : '#fff'}
                 borderColor={values === 'CREDIT' ? '#C40601' : '#000'}>
